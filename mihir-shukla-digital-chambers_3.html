@@ -1,0 +1,2309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mihir Shukla — Advocate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ DESIGN TOKENS ============ */
+:root{
+  --navy:#0E1B33;
+  --navy-2:#141F38;
+  --navy-deep:#0A1428;
+  --gold:#AD8A4E;
+  --gold-light:#DCC48F;
+  --ivory:#FAF6EC;
+  --ivory-dim:#F1E9D6;
+  --ink:#191712;
+  --grey:#726C5F;
+  --grey-light:#948E7E;
+  --line:#E4DBC2;
+  --line-dark:rgba(255,255,255,.14);
+  --white:#fff;
+  --radius:2px;
+  --serif:'Fraunces', Georgia, serif;
+  --sans:'Inter', -apple-system, sans-serif;
+  --gutter:20px;
+  --sp-sec: 36px;
+  --sp-lg: 44px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);
+  background:var(--ivory);
+  color:var(--ink);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:64px;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input,select,textarea{font-family:inherit;font-size:16px;}
+::selection{background:var(--gold-light);}
+
+.eyebrow{
+  font-family:var(--sans);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+}
+.eyebrow.on-dark{color:var(--gold-light);}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;color:var(--navy);line-height:1.14;letter-spacing:-.01em;}
+.container{max-width:520px;margin:0 auto;padding:0 var(--gutter);}
+@media(min-width:900px){
+  :root{
+    --gutter:24px;
+    --sp-sec: 56px;
+    --sp-lg: 72px;
+  }
+  .container{max-width:1120px;padding:0 48px;}
+}
+section{padding:var(--sp-sec) 0;}
+section.lg{padding:var(--sp-lg) 0;}
+
+.hairline{height:1px;background:var(--line);border:0;}
+.hairline.dark{background:var(--line-dark);}
+
+/* buttons + links */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:16px 28px;font-size:13.5px;font-weight:600;letter-spacing:.02em;
+  border-radius:var(--radius);transition:all .15s ease; white-space:nowrap;
+}
+.btn-primary{background:var(--navy);color:var(--ivory);}
+.btn-primary:active{background:var(--navy-2);}
+.btn-gold{background:var(--gold);color:var(--navy-deep);}
+.btn-outline{border:1px solid var(--navy);color:var(--navy);}
+.btn-outline-light{border:1px solid rgba(250,246,236,.4);color:var(--ivory);}
+.btn-block{width:100%;}
+.btn-sm{padding:12px 18px;font-size:12.5px;}
+
+.text-link{
+  display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:var(--gold);
+  border-bottom:1px solid transparent;
+}
+.text-link.dark{color:var(--gold-light);}
+.text-link.navy{color:var(--navy);}
+.text-link .arrow{transition:transform .15s;}
+
+/* ============ SECTION HEAD PATTERN ============ */
+.sec-head{margin-bottom:20px;}
+.sec-head .eyebrow{display:block;margin-bottom:8px;}
+.sec-head h2{font-size:26px;}
+.sec-head p{color:var(--grey);font-size:14px;margin-top:10px;max-width:38ch;line-height:1.6;}
+@media(min-width:900px){
+  .sec-head{margin-bottom:30px;}
+  .sec-head .eyebrow{margin-bottom:14px;}
+  .sec-head h2{font-size:38px;}
+  .sec-head p{font-size:14.5px;margin-top:14px;}
+}
+
+/* ============ HEADER ============ */
+header.site{
+  position:sticky;top:0;z-index:40;background:rgba(250,246,236,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+}
+.header-row{display:flex;align-items:center;justify-content:space-between;padding:16px var(--gutter);}
+.brand .name{font-family:var(--serif);font-size:16.5px;font-weight:600;color:var(--navy);letter-spacing:.01em;}
+.brand .role{font-size:9.5px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;font-weight:600;margin-top:1px;}
+.hamburger{width:36px;height:36px;display:flex;flex-direction:column;justify-content:center;gap:5px;align-items:center;}
+.hamburger span{width:19px;height:1.5px;background:var(--navy);display:block;}
+.desktop-nav{display:none;}
+@media(min-width:900px){
+  .hamburger{display:none;}
+  .desktop-nav{display:flex;gap:24px;align-items:center;font-size:13px;font-weight:500;}
+  .desktop-nav a:not(.btn){color:var(--navy);}
+  .desktop-nav .btn{padding:12px 22px;}
+}
+
+/* drawer */
+.drawer-backdrop{position:fixed;inset:0;background:rgba(10,20,40,.55);z-index:60;opacity:0;pointer-events:none;transition:opacity .2s;}
+.drawer-backdrop.open{opacity:1;pointer-events:auto;}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:82%;max-width:340px;background:var(--ivory);z-index:61;
+  transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);padding:28px var(--gutter) 40px;overflow-y:auto;}
+.drawer.open{transform:translateX(0);}
+.drawer-close{width:36px;height:36px;font-size:22px;color:var(--navy);}
+.drawer nav{margin-top:32px;display:flex;flex-direction:column;}
+.drawer nav a{padding:16px 0;border-bottom:1px solid var(--line);font-size:16px;font-family:var(--serif);color:var(--navy);}
+.drawer .actions{margin-top:28px;display:flex;flex-direction:column;gap:10px;}
+
+/* ============ HERO ============ */
+.hero{background:var(--ivory);}
+.hero-copy{padding:24px var(--gutter) 0;}
+.hero-copy .eyebrow{margin-bottom:12px;}
+.hero-copy h1{font-size:32px;letter-spacing:-.015em;}
+.hero-copy p.lead{color:var(--grey);font-size:14.5px;margin-top:12px;max-width:40ch;line-height:1.6;}
+.hero-btns{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:20px;}
+.hero-media{margin-top:20px;position:relative;height:40vh;min-height:260px;overflow:hidden;}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:saturate(.92) contrast(1.03);}
+.hero-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,51,0) 60%, rgba(14,27,51,.5) 100%);}
+.hero-stats{display:flex;justify-content:space-between;padding:20px var(--gutter) 4px;max-width:520px;margin:0 auto;gap:8px;}
+.hero-stats .stat{text-align:left;flex:1;}
+.hero-stats .num{font-family:var(--serif);font-size:20px;color:var(--navy);}
+.hero-stats .label{font-size:10px;color:var(--grey);margin-top:3px;letter-spacing:.02em;line-height:1.3;}
+.hero-stats .stat + .stat{border-left:1px solid var(--line);padding-left:12px;}
+@media(min-width:900px){
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;max-width:1120px;margin:0 auto;padding:40px 48px 0;gap:56px;}
+  .hero-copy{padding:0;}
+  .hero-copy h1{font-size:52px;}
+  .hero-media{margin-top:0;height:500px;border-radius:2px;}
+  .hero-stats{grid-column:1/-1;max-width:none;padding:32px 0 0;}
+  .hero-stats .num{font-size:24px;}
+  .hero-stats .label{font-size:11px;}
+  .hero-stats .stat + .stat{padding-left:18px;}
+}
+
+/* ============ ABOUT ============ */
+.about-sec .sec-head{margin-bottom:14px;}
+.about-lead{font-size:14.5px;color:var(--grey);line-height:1.7;max-width:46ch;}
+.about-id{margin-top:20px;padding-top:14px;border-top:1px solid var(--line);}
+.about-id .who{font-family:var(--serif);font-size:18px;color:var(--navy);}
+.about-id .role{font-size:12px;color:var(--gold);letter-spacing:.04em;margin-top:2px;}
+.about-id .meta{font-size:12px;color:var(--grey);margin-top:8px;}
+.about-sec .text-link{margin-top:16px;}
+
+/* ============ TRUSTED EXPERTISE ============ */
+.dark-sec{
+  background:linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+  color:var(--ivory);position:relative;
+}
+.dark-sec .sec-head p{color:#B7BFD3;}
+.expertise-head{position:relative;padding-bottom:10px;}
+.expertise-head h2{color:var(--ivory);font-size:32px;}
+.expertise-head h2 .thin{font-weight:400;opacity:.55;display:block;font-size:14px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:6px;font-family:var(--sans);color:var(--gold-light);}
+.swipe-hint{font-size:11px;letter-spacing:.14em;color:#8890A8;text-transform:uppercase;margin:12px var(--gutter) 0;text-align:left;}
+
+.carousel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:var(--gutter);
+  padding:8px var(--gutter) 20px;margin-top:16px;-webkit-overflow-scrolling:touch;}
+.carousel::-webkit-scrollbar{display:none;}
+.carousel .svc{scroll-snap-align:start;flex:0 0 82%;}
+@media(min-width:640px){.carousel .svc{flex:0 0 300px;}}
+
+.svc-card{
+  background:var(--navy-2);border:1px solid var(--line-dark);border-radius:var(--radius);
+  padding:24px 20px;height:100%;min-height:220px;display:flex;flex-direction:column;
+}
+.svc-card .idx{font-family:var(--serif);font-size:13px;color:var(--gold-light);opacity:.8;}
+.svc-card .cat{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8890A8;margin-top:10px;}
+.svc-card h3{color:var(--ivory);font-size:20px;margin-top:6px;}
+.svc-card p{color:#B7BFD3;font-size:13px;margin-top:8px;line-height:1.55;flex:1;}
+.svc-card .text-link{margin-top:14px;}
+
+/* ============ COURTS ============ */
+.map-visual{
+  background:var(--ivory-dim);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  max-width:100%;
+}
+.map-visual svg{width:100%;max-width:240px;height:auto;}
+.court-list{}
+.court-row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);gap:12px;}
+.court-row:first-child{border-top:1px solid var(--line);}
+.court-row .t{font-family:var(--serif);font-size:16px;color:var(--navy);}
+.court-row .d{font-size:11.5px;color:var(--grey);text-align:right;max-width:55%;line-height:1.4;}
+
+/* ============ WHY CHOOSE ============ */
+.why-list{margin-top:6px;}
+.why-row{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:flex-start;}
+.why-row:first-child{border-top:1px solid var(--line);}
+.why-row .n{font-family:var(--serif);font-size:14px;color:var(--gold);flex:0 0 24px;}
+.why-row .t{font-family:var(--serif);font-size:17px;color:var(--navy);}
+.why-row .d{font-size:12.5px;color:var(--grey);margin-top:4px;max-width:46ch;line-height:1.55;}
+
+/* ============ TIMELINE ============ */
+.timeline{position:relative;padding-left:24px;margin-top:8px;}
+.timeline::before{content:'';position:absolute;left:4px;top:6px;bottom:6px;width:1px;background:var(--line);}
+.tl-item{position:relative;padding-bottom:24px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{content:'';position:absolute;left:-24px;top:4px;width:9px;height:9px;border-radius:50%;background:var(--gold);border:2px solid var(--ivory);box-shadow:0 0 0 1px var(--gold);}
+.tl-item .yr{font-family:var(--serif);font-size:18px;color:var(--navy);}
+.tl-item p{font-size:13px;color:var(--grey);margin-top:4px;}
+.demo-note{font-size:11px;color:var(--grey-light);font-style:italic;margin-top:14px;}
+
+/* ============ SELECTED MATTERS ============ */
+.matter-row{display:block;padding:14px 0;border-bottom:1px solid var(--line);}
+.matter-row:first-child{border-top:1px solid var(--line);}
+.matter-row .mr-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+.matter-row h3{font-size:17.5px;color:var(--navy);font-weight:500;}
+.matter-row .arrow{color:var(--gold);font-size:15px;flex:0 0 auto;}
+.matter-row .meta{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-top:6px;}
+
+/* ============ TESTIMONIAL ============ */
+.testi-wrap{max-width:480px;}
+.testi-quote{color:var(--gold);font-family:var(--serif);font-size:36px;line-height:.5;display:block;margin-bottom:8px;}
+.testi-text{font-family:var(--serif);font-size:19px;color:var(--ink);line-height:1.45;}
+.testi-who{margin-top:14px;font-size:12px;color:var(--grey);}
+.testi-who b{color:var(--ink);font-weight:600;}
+.testi-nav{display:flex;align-items:center;gap:14px;margin-top:18px;}
+.testi-nav button{width:32px;height:32px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);}
+.testi-nav .count{font-size:12px;color:var(--grey);letter-spacing:.04em;}
+
+/* ============ INSIGHTS ============ */
+.feature-article{display:block;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--line);}
+.feature-article .cat{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);}
+.feature-article h3{font-size:22px;margin-top:10px;line-height:1.2;}
+.feature-article .rt{font-size:12px;color:var(--grey);margin-top:10px;}
+.article-row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);gap:12px;}
+.article-row .t{font-family:var(--serif);font-size:15px;color:var(--navy);}
+.article-row .meta{font-size:10.5px;color:var(--grey);text-transform:uppercase;letter-spacing:.06em;margin-top:4px;}
+.article-row .arrow{color:var(--gold);flex:0 0 auto;}
+
+/* ============ FAQ ============ */
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-item:first-child{border-top:1px solid var(--line);}
+.faq-q{width:100%;text-align:left;padding:14px 0;display:flex;justify-content:space-between;align-items:center;font-family:var(--serif);font-size:15.5px;color:var(--navy);gap:12px;}
+.faq-q .plus{font-size:18px;color:var(--gold);transition:transform .2s;flex:0 0 auto;font-family:var(--sans);font-weight:300;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;font-size:13px;color:var(--grey);line-height:1.6;}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:14px;}
+
+/* ============ CONSULTATION CTA ============ */
+.cta-sec{background:var(--navy);color:var(--ivory);text-align:left;padding:40px 0;}
+.cta-sec h2{color:var(--ivory);font-size:28px;max-width:16ch;}
+.cta-sec p{color:#B7BFD3;font-size:14px;margin-top:12px;max-width:38ch;line-height:1.6;}
+.cta-sec .btn{margin-top:20px;}
+@media(min-width:900px){
+  .cta-sec{padding:56px 0;}
+  .cta-sec h2{font-size:32px;}
+}
+
+/* ============ CONTACT ============ */
+.contact-id{margin-bottom:14px;}
+.contact-id .who{font-family:var(--serif);font-size:18px;color:var(--navy);}
+.contact-id .role{font-size:12px;color:var(--gold);letter-spacing:.04em;margin-top:2px;}
+.contact-list{}
+.contact-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px;gap:10px;}
+.contact-row:first-child{border-top:1px solid var(--line);}
+.contact-row .k{color:var(--grey);}
+.contact-row .v{color:var(--ink);font-weight:500;text-align:right;}
+.contact-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;}
+.contact-btns .btn{padding:12px 10px;font-size:12.5px;flex:1;}
+.contact-btns .btn-dir{grid-column:1/-1;}
+@media(min-width:600px){
+  .contact-btns{display:flex;}
+  .contact-btns .btn-dir{grid-column:auto;}
+}
+
+/* ============ FOOTER ============ */
+footer.site{background:var(--navy-deep);color:#9AA1B6;padding:44px 0 100px;font-size:12.5px;}
+footer.site .fname{font-family:var(--serif);color:var(--ivory);font-size:18px;}
+footer.site .frole{font-size:9.5px;letter-spacing:.2em;color:var(--gold-light);text-transform:uppercase;margin-top:3px;}
+.foot-nav{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:24px;}
+.foot-nav a{font-size:12.5px;color:#C4CADB;padding:4px 0;}
+.foot-legal{margin-top:22px;padding-top:18px;border-top:1px solid var(--line-dark);font-size:10.5px;color:#727893;line-height:1.65;}
+.foot-bottom{margin-top:16px;display:flex;justify-content:space-between;align-items:center;font-size:10.5px;color:#727893;flex-wrap:wrap;gap:8px;}
+.foot-bottom a{color:#9AA1B6;}
+
+/* ============ STICKY BOTTOM BAR ============ */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;z-index:50;background:var(--white);
+  border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1.4fr;}
+.bottom-bar a{padding:14px 6px;text-align:center;font-size:11.5px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.bottom-bar .ic{font-size:16px;}
+.bottom-bar .consult{background:var(--navy);color:var(--ivory);}
+.bottom-bar .call,.bottom-bar .wa{color:var(--navy);}
+@media(min-width:900px){.bottom-bar{display:none;}body{padding-bottom:0;}}
+
+/* ============ INTERIOR PAGE HERO ============ */
+.page-hero{background:var(--navy-deep);color:var(--ivory);padding:32px 0 28px;}
+.page-hero .back{font-size:12px;color:var(--gold-light);display:inline-block;margin-bottom:12px;}
+.page-hero h1{color:var(--ivory);font-size:24px;}
+.page-hero .meta{color:#AEB5C6;font-size:12px;margin-top:10px;}
+
+.badge-status{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;}
+.badge-pending{background:#F3E4BE;color:#856013;}
+.badge-review{background:#DAE5F3;color:#28517F;}
+.badge-confirmed{background:#D8ECDE;color:#256F49;}
+.badge-info{background:#F3D9D9;color:#963333;}
+
+.notice{background:var(--ivory-dim);border:1px solid var(--line);border-left:3px solid var(--gold);padding:12px 14px;font-size:12px;color:var(--grey);line-height:1.55;}
+
+/* ============ FORMS ============ */
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--navy);margin-bottom:6px;letter-spacing:.01em;}
+.field input[type=text],.field input[type=tel],.field input[type=email],.field input[type=date],.field select,.field textarea{
+  width:100%;padding:12px 12px;border:1px solid var(--line);border-radius:var(--radius);background:var(--white);color:var(--ink);font-size:14.5px;
+}
+.field textarea{min-height:80px;resize:vertical;}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold);}
+.field.error input,.field.error select,.field.error textarea{border-color:#B23A3A;}
+.field .err-msg{font-size:11px;color:#B23A3A;margin-top:4px;display:none;}
+.field.error .err-msg{display:block;}
+.checkline{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--grey);margin-bottom:12px;line-height:1.5;}
+.checkline input{margin-top:2px;width:15px;height:15px;flex:0 0 auto;}
+
+.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.option-card{border:1px solid var(--line);background:var(--white);border-radius:var(--radius);padding:14px 12px;text-align:left;transition:all .12s;}
+.option-card.wide{grid-column:1/-1;}
+.option-card.selected{border-color:var(--navy);background:var(--navy);color:var(--ivory);}
+.option-card .t{font-family:var(--serif);font-size:15px;}
+.option-card .d{font-size:11px;color:var(--grey);margin-top:4px;}
+.option-card.selected .d{color:#B9C0D2;}
+
+/* ============ WIZARD ============ */
+.wizard-wrap{min-height:calc(100vh - 60px);display:flex;flex-direction:column;}
+.wizard-top{position:sticky;top:0;background:var(--ivory);z-index:30;padding:14px var(--gutter);border-bottom:1px solid var(--line);}
+.wizard-steps{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+.wizard-steps .num{font-size:10.5px;letter-spacing:.12em;color:var(--grey);text-transform:uppercase;}
+.wizard-steps .cur{font-family:var(--serif);font-size:14.5px;color:var(--navy);}
+.progress-track{height:2px;background:var(--line);}
+.progress-fill{height:100%;background:var(--gold);transition:width .3s;}
+.wizard-body{flex:1;padding:24px var(--gutter) 100px;max-width:560px;margin:0 auto;width:100%;}
+.wizard-body h2{font-size:20px;margin-bottom:6px;}
+.wizard-sub{font-size:12.5px;color:var(--grey);margin-bottom:20px;}
+.wizard-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--line);padding:12px var(--gutter);display:flex;gap:10px;z-index:30;}
+.wizard-nav .btn{flex:1;}
+
+.upload-zone{border:1.5px dashed var(--line);border-radius:var(--radius);padding:24px 14px;text-align:center;background:var(--white);}
+.upload-zone .ic{font-size:22px;color:var(--gold);}
+.upload-zone p{font-size:12px;color:var(--grey);margin-top:8px;}
+.file-row{display:flex;align-items:center;justify-content:space-between;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:11px 13px;margin-top:8px;}
+.file-row .fname{font-size:12.5px;font-weight:600;color:var(--ink);}
+.file-row .fmeta{font-size:10.5px;color:var(--grey);margin-top:2px;}
+.file-row .remove{color:#B23A3A;font-size:11.5px;font-weight:600;}
+.empty-state{text-align:center;padding:24px 12px;color:var(--grey);font-size:12px;}
+
+.slot-day h4{font-family:var(--serif);font-size:14.5px;color:var(--navy);margin-bottom:8px;}
+.slot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.slot{border:1px solid var(--line);background:var(--white);padding:10px 4px;text-align:center;font-size:12px;border-radius:var(--radius);font-weight:600;color:var(--navy);}
+.slot.selected{background:var(--navy);color:var(--ivory);border-color:var(--navy);}
+.slot.disabled{color:#C6C1B4;background:var(--ivory-dim);text-decoration:line-through;}
+
+.review-block{border-bottom:1px solid var(--line);padding:16px 0;}
+.review-block:first-child{border-top:1px solid var(--line);}
+.review-block .rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.review-block .rh h4{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--grey);font-family:var(--sans);font-weight:600;}
+.review-block .rh .edit{font-size:11.5px;color:var(--gold);font-weight:700;}
+.review-block .rr{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;}
+.review-block .rr .k{color:var(--grey);}
+.review-block .rr .v{color:var(--ink);font-weight:500;text-align:right;max-width:60%;}
+
+.success-wrap{text-align:center;padding:36px 16px 48px;}
+.success-icon{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--navy-deep);font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+.ref-box{background:var(--navy);color:var(--ivory);border-radius:var(--radius);padding:20px;margin:20px 0;}
+.ref-box .lbl{font-size:10px;color:var(--gold-light);letter-spacing:.12em;text-transform:uppercase;}
+.ref-box .val{font-family:var(--serif);font-size:24px;margin-top:6px;}
+
+.status-timeline{margin-top:24px;}
+.status-step{display:flex;gap:12px;padding-bottom:22px;position:relative;}
+.status-step::before{content:'';position:absolute;left:10px;top:22px;bottom:0;width:1px;background:var(--line);}
+.status-step:last-child::before{display:none;}
+.status-step .dot{width:21px;height:21px;border-radius:50%;border:2px solid var(--line);background:var(--white);flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--grey);}
+.status-step.done .dot{background:var(--navy);border-color:var(--navy);color:var(--ivory);}
+.status-step.active .dot{background:var(--gold);border-color:var(--gold);color:var(--navy-deep);}
+.status-step .t{font-family:var(--serif);font-size:14.5px;color:var(--ink);}
+.status-step .d{font-size:12px;color:var(--grey);margin-top:2px;}
+
+.loader{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 16px;gap:12px;}
+.spinner{width:28px;height:28px;border:2px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.hidden{display:none !important;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.stack{display:grid;gap:12px;}
+@media(min-width:700px){.stack.md-3{grid-template-columns:1fr 1fr 1fr;}.stack.md-2{grid-template-columns:1fr 1fr;}}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+/* ============ LANGUAGE SELECTION OVERLAY ============ */
+.lang-overlay {
+  min-height: 100vh;
+  background: var(--navy-deep);
+  color: var(--ivory);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px var(--gutter);
+  text-align: center;
+}
+.lang-overlay h1 {
+  font-family: var(--serif);
+  font-size: 36px;
+  color: var(--ivory);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.lang-overlay .role {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 48px;
+}
+.lang-overlay p {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  color: #B7BFD3;
+  margin-bottom: 32px;
+  max-width: 320px;
+}
+.lang-overlay .btn-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 280px;
+}
+.lang-overlay .btn-grid .btn {
+  font-size: 15px;
+  padding: 16px;
+}
+.lang-toggle-btn {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  transition: all 0.15s ease;
+  background: none;
+  white-space: nowrap;
+}
+.lang-toggle-btn:active {
+  background: var(--gold);
+  color: var(--navy-deep);
+}
+header.site .lang-toggle-btn {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+header.site .lang-toggle-btn:active {
+  background: var(--navy);
+  color: var(--ivory);
+}
+.mobile-lang-btn {
+  padding: 6px 10px;
+  font-size: 11.5px;
+}
+@media(min-width:900px){
+  .mobile-lang-btn {
+    display: none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer"></div>
+
+<script>
+/* ============ BILINGUAL TRANSLATION DICTIONARY ============ */
+const T = {
+  en: {
+    lang_title: "MIHIR SHUKLA",
+    lang_subtitle: "ADVOCATE",
+    lang_prompt: "Choose your preferred language",
+    lang_btn_en: "English",
+    lang_btn_hi: "हिन्दी",
+
+    brand_name: "Mihir Shukla",
+    brand_role: "Advocate",
+    nav_about: "About",
+    nav_practice: "Practice Areas",
+    nav_experience: "Experience",
+    nav_matters: "Matters",
+    nav_insights: "Insights",
+    nav_faqs: "FAQs",
+    nav_contact: "Contact",
+    nav_request_btn: "Request Consultation",
+    nav_whatsapp: "WhatsApp Office",
+    nav_call: "Call",
+    nav_whatsapp_bar: "WhatsApp",
+    nav_consult_bar: "Consult",
+
+    hero_eyebrow: "Advocate · Legal Counsel",
+    hero_title: "Experience That Speaks.<br>Representation That Matters.",
+    hero_lead: "Experienced legal counsel and representation across civil, criminal, property and commercial matters.",
+    hero_cta: "Request a Consultation &rarr;",
+    hero_view_profile: "View Profile &rarr;",
+    hero_stat_years: "Years of<br>Practice",
+    hero_stat_matters: "Matters",
+    hero_stat_courts: "Multiple<br>Courts &amp; Forums",
+
+    about_eyebrow: "About",
+    about_title: "A Practice Built on<br>Experience, Preparation<br>&amp; Trust.",
+    about_lead: "Mihir Shukla has practised law for over 18 years, approaching every matter with careful preparation and direct, honest communication.",
+    about_name: "Mihir Shukla",
+    about_meta: "Gorakhpur &middot; Uttar Pradesh &nbsp;|&nbsp; Bar Council of Uttar Pradesh",
+    about_meta_page: "Gorakhpur &middot; Uttar Pradesh &nbsp;|&nbsp; Bar Council of Uttar Pradesh &nbsp;|&nbsp; English &middot; Hindi",
+    about_role: "Advocate &middot; 18+ Years of Practice",
+    about_view_full: "View Full Profile &rarr;",
+
+    exp_eyebrow: "My Services",
+    exp_title: "Trusted Expertise",
+    exp_lead: "Focused legal services backed by extensive professional experience.",
+    exp_swipe: "&larr;&nbsp; Swipe &nbsp;&rarr;",
+    exp_explore: "Explore &rarr;",
+
+    courts_eyebrow: "Courts &amp; Jurisdictions",
+    courts_title: "Representation Across<br>Key Legal Forums",
+    courts_notice: "Shown for demonstration; not all listed forums represent verified, current credentials.",
+
+    why_eyebrow: "Why Choose Me",
+    why_title: "Why Clients Choose<br>Experience Over Noise.",
+    why_01_t: "Experience",
+    why_01_d: "18+ years of legal practice.",
+    why_02_t: "Preparation",
+    why_02_d: "Careful review of facts and documents.",
+    why_03_t: "Personal Attention",
+    why_03_d: "Focused understanding of individual circumstances.",
+    why_04_t: "Communication",
+    why_04_d: "Clear explanation of legal processes and options.",
+
+    time_eyebrow: "Professional Experience",
+    time_title: "A Timeline of Practice",
+    time_demo: "Milestones shown are demonstration information pending verified details.",
+
+    matters_eyebrow: "Selected Matters",
+    matters_title: "Selected Legal Work",
+    matters_view_all: "View All Matters &rarr;",
+    matters_notice: "Client identities are never disclosed. Matters shown are representative examples, not verified case outcomes.",
+    matters_nature: "Nature",
+    matters_rep: "Representation",
+    matters_rep_demo: "Representative example shown for demonstration purposes.",
+    matters_discuss_similar: "Discuss a Similar Matter &rarr;",
+
+    testi_eyebrow: "Testimonials",
+    testi_title: "What Clients Say",
+
+    insights_eyebrow: "Legal Insights",
+    insights_title: "Knowledge Before Action.",
+    insights_read: "Read Article &rarr;",
+    insights_notice: "This content is provided for general informational purposes and does not constitute legal advice.",
+    insights_cta: "Request a Consultation &rarr;",
+
+    faq_eyebrow: "FAQ",
+    faq_title: "Frequently Asked<br>Questions",
+    faq_view_all: "View All FAQs &rarr;",
+
+    ccta_eyebrow: "Consultation",
+    ccta_title: "Need Legal Guidance?",
+    ccta_lead: "Request a consultation and provide the relevant details before speaking with the office.",
+    ccta_btn: "Request a Consultation &rarr;",
+
+    contact_eyebrow: "Contact",
+    contact_title: "Visit the Office",
+    contact_chamber_lbl: "Chamber",
+    contact_chamber_val: "Chamber 204, District Court Complex",
+    contact_loc_lbl: "Location",
+    contact_loc_val: "Gorakhpur, Uttar Pradesh",
+    contact_phone_lbl: "Phone",
+    contact_phone_val: "+91 98765 43210",
+    contact_email_lbl: "Email",
+    contact_email_val: "office@mihirshukla-law.example",
+    contact_hours_lbl: "Office Hours",
+    contact_hours_val: "Mon&ndash;Sat, 10:00 AM&ndash;6:00 PM",
+    contact_btn_call: "Call",
+    contact_btn_wa: "WhatsApp",
+    contact_btn_dir: "Directions",
+
+    foot_legal: "Submitting a consultation request does not by itself establish an advocate-client relationship. Information submitted through this website is intended to assist with evaluating a consultation request and does not constitute legal advice. All experience, matters and testimonials shown are demonstration content pending verified information.",
+    foot_bottom_text: "&copy; 2026 Mihir Shukla — Digital Chambers",
+    foot_privacy: "Privacy",
+    foot_terms: "Terms",
+
+    page_about_title: "Mihir Shukla, Advocate",
+    page_about_subtitle: "18+ Years of Practice &middot; Gorakhpur &amp; Uttar Pradesh",
+    page_about_p1: "A practice built over 18 years, grounded in careful preparation and direct client communication, across civil, criminal, property and commercial matters.",
+    page_about_b1: "Professional background.",
+    page_about_d1: " Appearances before district courts, trial courts and specialised forums across civil, criminal, property and commercial matters.",
+    page_about_b2: "Practice philosophy.",
+    page_about_d2: " Every matter is approached with an honest assessment of the facts, rather than assurances of outcome.",
+    page_about_b3: "Preparation.",
+    page_about_d3: " Documents and facts are reviewed thoroughly before advice is given.",
+    page_about_b4: "Client communication.",
+    page_about_d4: " Clients are kept informed in plain language at each stage.",
+    page_about_notice: "This profile contains demonstration information. Verified biographical details will be added when supplied.",
+    page_about_cta: "Request a Consultation &rarr;",
+
+    page_practice_title: "Areas of Practice",
+    page_practice_detail_back: "&larr; Practice Areas",
+    page_practice_detail_notice: "Service descriptions are indicative. Specific guidance is provided during consultation.",
+    page_practice_detail_cta: "Discuss This Matter &rarr;",
+
+    page_exp_title: "Professional Experience",
+    page_courts_title: "Courts &amp; Jurisdictions",
+
+    wiz_step: "Step",
+    wiz_cancel: "Cancel",
+    wiz_back: "&larr; Back",
+    wiz_continue: "Continue &rarr;",
+    wiz_submit_request: "Submit Request",
+    wiz_select_matter_err: "Please select a matter type to continue.",
+    wiz_fill_fields_err: "Please fill in the required fields.",
+    wiz_name_err: "Please enter your full name.",
+    wiz_mobile_err: "Please enter a valid mobile number.",
+    wiz_email_err: "Please enter a valid email address.",
+    wiz_confirm_err: "Please confirm accuracy of information and acknowledge the Privacy Notice to continue.",
+    wiz_appt_type_err: "Please select a consultation type.",
+    wiz_appt_slot_err: "Please select a date and time.",
+    wiz_file_type_err: "Unsupported file type. Please upload a PDF, JPG or PNG.",
+    wiz_file_size_err: "File exceeds the 10MB limit.",
+    wiz_loading: "Submitting your consultation request&hellip;",
+
+    wiz_s1_title: "What type of matter do you need assistance with?",
+    wiz_s1_sub: "Select the option that best describes your matter.",
+
+    wiz_s2_title: "Tell us about your matter",
+    wiz_s2_sub: "Only fields relevant to your matter type are shown.",
+    wiz_s2_desc: "Brief description",
+    wiz_s2_desc_ph: "Briefly describe your matter",
+    wiz_s2_date: "Date of incident/dispute",
+    wiz_s2_loc: "Location",
+    wiz_s2_loc_ph: "City / district",
+    wiz_s2_existing: "Is there an existing case?",
+    wiz_s2_existing_no: "No",
+    wiz_s2_existing_yes: "Yes",
+    wiz_s2_court: "Court / Forum",
+    wiz_s2_case: "Case Number",
+    wiz_s2_stage: "Current Stage",
+    wiz_s2_hearing: "Next Hearing Date",
+    wiz_s2_notice_generic: "This form collects information only.",
+
+    wiz_cond_crim_title: "Criminal Matter Details",
+    wiz_cond_crim_nature: "Nature of Offence",
+    wiz_cond_crim_sections: "Sections / Acts Involved",
+    wiz_cond_crim_fir: "FIR Registered?",
+    wiz_cond_crim_firno: "FIR Number",
+    wiz_cond_crim_firdate: "FIR Date",
+    wiz_cond_crim_ps: "Police Station",
+    wiz_cond_crim_district: "District",
+    wiz_cond_crim_role: "Your Role",
+    wiz_cond_crim_stage: "Current Stage",
+    wiz_cond_crim_notice: "This form collects information only. It does not determine guilt or classify conduct as an offence.",
+
+    wiz_cond_prop_title: "Property Matter Details",
+    wiz_cond_prop_loc: "Property Location",
+    wiz_cond_prop_type: "Property Type",
+    wiz_cond_prop_type_ph: "Residential / Agricultural / Commercial",
+    wiz_cond_prop_issue: "Ownership / Possession Issue",
+    wiz_cond_prop_parties: "Other Parties Involved",
+
+    wiz_cond_civil_title: "Civil Dispute Details",
+    wiz_cond_civil_parties: "Parties Involved",
+    wiz_cond_civil_relief: "Relief Sought",
+    wiz_cond_civil_relief_ph: "What outcome are you seeking?",
+
+    wiz_cond_fam_title: "Family / Matrimonial Details",
+    wiz_cond_fam_type: "Matter Type",
+    wiz_cond_fam_dates: "Relevant Dates",
+    wiz_cond_fam_dates_ph: "e.g. date of marriage / separation",
+
+    wiz_cond_comm_title: "Commercial Matter Details",
+    wiz_cond_comm_biz: "Business / Entity Name",
+    wiz_cond_comm_nature: "Nature of Dispute",
+    wiz_cond_comm_contract: "Contract / Agreement Reference",
+    wiz_cond_comm_deadline: "Important Deadline (if any)",
+
+    wiz_s3_title: "Upload relevant documents",
+    wiz_s3_sub: "Optional, but helpful for evaluating your matter. Files are stored privately.",
+    wiz_s3_doc_type: "Document type",
+    wiz_s3_upload_zone: "Tap to add a document<br><span style='font-size:11px;'>PDF, JPG, PNG &middot; up to 10MB</span>",
+    wiz_s3_choose_btn: "Choose File",
+    wiz_s3_no_docs: "No documents uploaded<br><span style='font-size:12px;'>Relevant documents will appear here.</span>",
+    wiz_s3_remove: "Remove",
+    wiz_s3_notice: "Documents are stored privately and are never made available via a public link.",
+
+    wiz_s4_title: "Your contact details",
+    wiz_s4_sub: "We'll use this to follow up regarding your consultation request.",
+    wiz_s4_name: "Full Name",
+    wiz_s4_mobile: "Mobile Number",
+    wiz_s4_mobile_ph: "10-digit mobile number",
+    wiz_s4_email: "Email",
+    wiz_s4_city: "City",
+    wiz_s4_pref: "Preferred communication",
+    wiz_s4_confirm: "I confirm that the information provided is accurate to the best of my knowledge.",
+    wiz_s4_privacy: "I have read the Privacy Notice.",
+
+    wiz_s5_title: "Request an appointment",
+    wiz_s5_sub: "Select a consultation type, then a preferred date and time.",
+    wiz_s5_type_inperson: "In-Person",
+    wiz_s5_type_inperson_d: "Office consultation",
+    wiz_s5_type_phone: "Phone",
+    wiz_s5_type_phone_d: "Phone consultation",
+    wiz_s5_type_video: "Video",
+    wiz_s5_type_video_d: "Online consultation",
+    wiz_s5_date: "Select date",
+    wiz_s5_no_slots: "No appointments are available on this date.<br>Please select another date.",
+    wiz_s5_notice: "This is a request for an appointment. It is not automatically confirmed — the office will review and confirm separately.",
+
+    wiz_s6_title: "Review your request",
+    wiz_s6_sub: "Please review the details below before submitting.",
+    wiz_s6_edit: "Edit &rarr;",
+    wiz_s6_matter: "Matter",
+    wiz_s6_case_details: "Case Details",
+    wiz_s6_type: "Type",
+    wiz_s6_desc: "Description",
+    wiz_s6_loc: "Location",
+    wiz_s6_existing: "Existing Case",
+    wiz_s6_documents: "Documents",
+    wiz_s6_files: "Files",
+    wiz_s6_contact: "Contact",
+    wiz_s6_name: "Name",
+    wiz_s6_mobile: "Mobile",
+    wiz_s6_email: "Email",
+    wiz_s6_appointment: "Appointment",
+    wiz_s6_date: "Date",
+    wiz_s6_time: "Time",
+    wiz_s6_notice: "Submitting this request does not by itself establish an advocate-client relationship.",
+
+    suc_received: "Request Received",
+    suc_lead: "Your consultation request has been submitted for review. The office will contact you regarding confirmation.",
+    suc_ref: "Reference",
+    suc_pending: "Pending Review",
+    suc_req_date: "Requested Date",
+    suc_req_time: "Requested Time",
+    suc_type: "Consultation Type",
+    suc_btn_track: "Track Request Status",
+    suc_btn_home: "Return Home",
+
+    stat_title: "Track Your Request",
+    stat_step1_t: "Request Submitted",
+    stat_step1_d: "Your consultation request was received.",
+    stat_step2_t: "Under Review",
+    stat_step2_d: "The office is reviewing your request and availability.",
+    stat_step3_t: "Confirmed",
+    stat_step3_d: "Your appointment date and time will be confirmed here.",
+    stat_step4_t: "Completed",
+    stat_step4_d: "Marked once the consultation has taken place.",
+    stat_notice: "Status may also show as <strong>More Information Required</strong> if additional details are needed before confirmation."
+  },
+  hi: {
+    lang_title: "मिहिर शुक्ला",
+    lang_subtitle: "अधिवक्ता",
+    lang_prompt: "अपनी पसंदीदा भाषा चुनें",
+    lang_btn_en: "English",
+    lang_btn_hi: "हिन्दी",
+
+    brand_name: "मिहिर शुक्ला",
+    brand_role: "अधिवक्ता",
+    nav_about: "परिचय",
+    nav_practice: "कार्यक्षेत्र",
+    nav_experience: "अनुभव",
+    nav_matters: "मामले",
+    nav_insights: "कानूनी लेख",
+    nav_faqs: "सामान्य प्रश्न",
+    nav_contact: "संपर्क",
+    nav_request_btn: "कानूनी परामर्श का अनुरोध",
+    nav_whatsapp: "व्हाट्सएप कार्यालय",
+    nav_call: "कॉल करें",
+    nav_whatsapp_bar: "व्हाट्सएप",
+    nav_consult_bar: "परामर्श",
+
+    hero_eyebrow: "अधिवक्ता · कानूनी सलाहकार",
+    hero_title: "अनुभव जो बोले।<br>प्रतिनिधित्व जो प्रभाव डाले।",
+    hero_lead: "दीवानी, आपराधिक, संपत्ति और वाणिज्यिक मामलों में अनुभवी कानूनी सलाह और प्रतिनिधित्व।",
+    hero_cta: "कानूनी परामर्श का अनुरोध &rarr;",
+    hero_view_profile: "प्रोफ़ाइल देखें &rarr;",
+    hero_stat_years: "वर्षों का<br>अनुभव",
+    hero_stat_matters: "मामले",
+    hero_stat_courts: "विभिन्न<br>न्यायालय और मंच",
+
+    about_eyebrow: "परिचय",
+    about_title: "अनुभव, तैयारी और<br>विश्वास पर आधारित<br>वकालत।",
+    about_lead: "मिहिर शुक्ला के पास 18 से अधिक वर्षों का कानूनी अनुभव है। वे प्रत्येक मामले में सावधानीपूर्वक तैयारी और ईमानदार व स्पष्ट संचार के साथ काम करते हैं।",
+    about_name: "मिहिर शुक्ला",
+    about_meta: "गोरखपुर &middot; उत्तर प्रदेश &nbsp;|&nbsp; उत्तर प्रदेश बार काउंसिल",
+    about_meta_page: "गोरखपुर &middot; उत्तर प्रदेश &nbsp;|&nbsp; उत्तर प्रदेश बार काउंसिल &nbsp;|&nbsp; अंग्रेजी &middot; हिन्दी",
+    about_role: "अधिवक्ता · 18+ वर्षों का अनुभव",
+    about_view_full: "पूर्ण प्रोफ़ाइल देखें &rarr;",
+
+    exp_eyebrow: "मेरी सेवाएं",
+    exp_title: "विश्वसनीय विशेषज्ञता",
+    exp_lead: "व्यापक पेशेवर अनुभव पर आधारित केंद्रित कानूनी सेवाएं।",
+    exp_swipe: "&larr;&nbsp; स्वाइप करें &nbsp;&rarr;",
+    exp_explore: "विस्तृत विवरण &rarr;",
+
+    courts_eyebrow: "न्यायालय और क्षेत्राधिकार",
+    courts_title: "प्रमुख कानूनी मंचों में<br>प्रतिनिधित्व",
+    courts_notice: "यह विवरण केवल प्रदर्शन के लिए है; सूचीबद्ध सभी मंच वर्तमान या सत्यापित क्रेडेंशियल का प्रतिनिधित्व नहीं करते हैं।",
+
+    why_eyebrow: "मुझे क्यों चुनें",
+    why_title: "मुवक्किल शोर के बजाय<br>अनुभव को क्यों चुनते हैं।",
+    why_01_t: "अनुभव",
+    why_01_d: "18+ वर्षों का कानूनी अभ्यास।",
+    why_02_t: "गहन तैयारी",
+    why_02_d: "तथ्यों और दस्तावेजों की सावधानीपूर्वक समीक्षा।",
+    why_03_t: "व्यक्तिगत ध्यान",
+    why_03_d: "व्यक्तिगत परिस्थितियों और तथ्यों की केंद्रित समझ।",
+    why_04_t: "स्पष्ट संचार",
+    why_04_d: "कानूनी प्रक्रियाओं और विकल्पों की सरल और स्पष्ट व्याख्या।",
+
+    time_eyebrow: "पेशेवर अनुभव",
+    time_title: "अभ्यास की समयरेखा",
+    time_demo: "दिखाए गए मील के पत्थर प्रदर्शन के उद्देश्य से हैं, सत्यापित विवरण बाद में जोड़े जाएंगे।",
+
+    matters_eyebrow: "चयनित मामले",
+    matters_title: "चयनित कानूनी कार्य",
+    matters_view_all: "सभी मामले देखें &rarr;",
+    matters_notice: "मुवक्किलों की गोपनीयता का हमेशा सम्मान किया जाता है। दिखाए गए मामले केवल उदाहरण हैं, सत्यापित अदालती परिणाम नहीं।",
+    matters_nature: "मामले की प्रकृति",
+    matters_rep: "प्रतिनिधित्व",
+    matters_rep_demo: "प्रदर्शन के उद्देश्य से प्रतिनिधि उदाहरण दिखाया गया है।",
+    matters_discuss_similar: "समान मामले पर चर्चा करें &rarr;",
+
+    testi_eyebrow: "प्रशंसापत्र",
+    testi_title: "मुवक्किलों के विचार",
+
+    insights_eyebrow: "कानूनी समझ",
+    insights_title: "कार्रवाई से पहले जानकारी।",
+    insights_read: "लेख पढ़ें &rarr;",
+    insights_notice: "यह सामग्री केवल सामान्य जानकारी के लिए प्रदान की गई है और इसे कानूनी सलाह नहीं माना जाना चाहिए।",
+    insights_cta: "कानूनी परामर्श का अनुरोध &rarr;",
+
+    faq_eyebrow: "सामान्य प्रश्न",
+    faq_title: "अक्सर पूछे जाने वाले<br>प्रश्न",
+    faq_view_all: "सभी प्रश्न देखें &rarr;",
+
+    ccta_eyebrow: "कानूनी परामर्श",
+    ccta_title: "कानूनी मार्गदर्शन की आवश्यकता है?",
+    ccta_lead: "कार्यालय से संपर्क करने से पहले परामर्श का अनुरोध करें और संबंधित विवरण साझा करें।",
+    ccta_btn: "कानूनी परामर्श का अनुरोध &rarr;",
+
+    contact_eyebrow: "संपर्क",
+    contact_title: "कार्यालय में मिलें",
+    contact_chamber_lbl: "Chamber / चेंबर",
+    contact_chamber_val: "चेंबर 204, जिला न्यायालय परिसर",
+    contact_loc_lbl: "स्थान",
+    contact_loc_val: "गोरखपुर, उत्तर प्रदेश",
+    contact_phone_lbl: "फोन",
+    contact_phone_val: "+91 98765 43210",
+    contact_email_lbl: "ईमेल",
+    contact_email_val: "office@mihirshukla-law.example",
+    contact_hours_lbl: "कार्यालय का समय",
+    contact_hours_val: "सोम-शनि, सुबह 10:00 से शाम 6:00 बजे तक",
+    contact_btn_call: "कॉल करें",
+    contact_btn_wa: "व्हाट्सएप",
+    contact_btn_dir: "मार्गदर्शन",
+
+    foot_legal: "केवल परामर्श का अनुरोध जमा करने से अधिवक्ता-मुवक्किल संबंध स्थापित नहीं होता है। इस वेबसाइट के माध्यम से प्रस्तुत जानकारी का उद्देश्य परामर्श अनुरोध का मूल्यांकन करना है और यह कानूनी सलाह नहीं है। दिखाए गए सभी अनुभव, मामले और प्रशंसापत्र सत्यापित जानकारी मिलने तक केवल प्रदर्शन के लिए हैं।",
+    foot_bottom_text: "&copy; 2026 मिहिर शुक्ला — डिजिटल चैम्बर्स",
+    foot_privacy: "गोपनीयता नीति",
+    foot_terms: "नियम व शर्तें",
+
+    page_about_title: "मिहिर शुक्ला, अधिवक्ता",
+    page_about_subtitle: "18+ वर्षों का अनुभव &middot; गोरखपुर और उत्तर प्रदेश",
+    page_about_p1: "18 से अधिक वर्षों में विकसित एक कानूनी अभ्यास, जो दीवानी, आपराधिक, संपत्ति और वाणिज्यिक मामलों में सावधानीपूर्वक तैयारी और सीधे मुवक्किल संचार पर आधारित है।",
+    page_about_b1: "पेशेवर पृष्ठभूमि।",
+    page_about_d1: " दीवानी, आपराधिक, संपत्ति और वाणिज्यिक मामलों में जिला न्यायालयों, विचारण न्यायालयों और विशेष मंचों के समक्ष नियमित उपस्थिति।",
+    page_about_b2: "अभ्यास का सिद्धांत।",
+    page_about_d2: " प्रत्येक मामले को परिणाम के झूठे आश्वासनों के बजाय तथ्यों के ईमानदार मूल्यांकन के साथ लिया जाता है।",
+    page_about_b3: "सावधानीपूर्वक तैयारी।",
+    page_about_d3: " सलाह देने से पहले तथ्यों और दस्तावेजों की गहन समीक्षा की जाती है।",
+    page_about_b4: "मुवक्किलों से संवाद।",
+    page_about_d4: " मुवक्किलों को प्रत्येक चरण में सरल भाषा में सूचित रखा जाता है।",
+    page_about_notice: "यह प्रोफ़ाइल प्रदर्शन जानकारी प्रदान करती है। सत्यापित जीवनी विवरण बाद में जोड़े जाएंगे।",
+    page_about_cta: "कानूनी परामर्श का अनुरोध &rarr;",
+
+    page_practice_title: "कार्यक्षेत्र",
+    page_practice_detail_back: "&larr; कार्यक्षेत्र",
+    page_practice_detail_notice: "कार्यक्षेत्रों का विवरण केवल सांकेतिक है। विशिष्ट मार्गदर्शन परामर्श के दौरान प्रदान किया जाता है।",
+    page_practice_detail_cta: "इस विषय पर चर्चा करें &rarr;",
+
+    page_exp_title: "पेशेवर अनुभव",
+    page_courts_title: "न्यायालय और क्षेत्राधिकार",
+
+    wiz_step: "चरण",
+    wiz_cancel: "रद्द करें",
+    wiz_back: "&larr; पीछे",
+    wiz_continue: "आगे बढ़ें &rarr;",
+    wiz_submit_request: "अनुरोध सबमिट करें",
+    wiz_select_matter_err: "कृपया जारी रखने के लिए मामले के प्रकार का चयन करें।",
+    wiz_fill_fields_err: "कृपया आवश्यक फ़ील्ड भरें।",
+    wiz_name_err: "कृपया अपना पूरा नाम दर्ज करें।",
+    wiz_mobile_err: "कृपया एक वैध मोबाइल नंबर दर्ज करें।",
+    wiz_email_err: "कृपया एक वैध ईमेल पता दर्ज करें।",
+    wiz_confirm_err: "कृपया जानकारी की सटीकता की पुष्टि करें और गोपनीयता सूचना को स्वीकार करें।",
+    wiz_appt_type_err: "कृपया परामर्श के प्रकार का चयन करें।",
+    wiz_appt_slot_err: "कृपया तिथि और समय का चयन करें।",
+    wiz_file_type_err: "अमान्य फ़ाइल प्रकार। कृपया केवल PDF, JPG या PNG अपलोड करें।",
+    wiz_file_size_err: "फ़ाइल 10MB की सीमा से अधिक है।",
+    wiz_loading: "आपके परामर्श अनुरोध को जमा किया जा रहा है&hellip;",
+
+    wiz_s1_title: "आपको किस प्रकार के मामले में सहायता की आवश्यकता है?",
+    wiz_s1_sub: "उस विकल्प का चयन करें जो आपके मामले का सबसे अच्छा वर्णन करता है।",
+
+    wiz_s2_title: "अपने मामले के बारे में बताएं",
+    wiz_s2_sub: "केवल आपके मामले के प्रकार से संबंधित फ़ील्ड ही दिखाए जा रहे हैं।",
+    wiz_s2_desc: "संक्षिप्त विवरण",
+    wiz_s2_desc_ph: "अपने मामले का संक्षिप्त विवरण लिखें",
+    wiz_s2_date: "घटना / विवाद की तिथि",
+    wiz_s2_loc: "स्थान",
+    wiz_s2_loc_ph: "शहर / जिला",
+    wiz_s2_existing: "क्या कोई मौजूदा केस लंबित है?",
+    wiz_s2_existing_no: "नहीं",
+    wiz_s2_existing_yes: "हाँ",
+    wiz_s2_court: "न्यायालय / मंच",
+    wiz_s2_case: "केस संख्या (Case Number)",
+    wiz_s2_stage: "वर्तमान चरण",
+    wiz_s2_hearing: "अगली सुनवाई की तिथि",
+    wiz_s2_notice_generic: "यह फॉर्म केवल जानकारी एकत्र करने के लिए है।",
+
+    wiz_cond_crim_title: "आपराधिक मामले का विवरण",
+    wiz_cond_crim_nature: "अपराध की प्रकृति",
+    wiz_cond_crim_sections: "संबंधित धाराएं / अधिनियम",
+    wiz_cond_crim_fir: "प्राथमिकी (FIR) दर्ज है?",
+    wiz_cond_crim_firno: "प्राथमिकी (FIR) संख्या",
+    wiz_cond_crim_firdate: "प्राथमिकी (FIR) की तिथि",
+    wiz_cond_crim_ps: "थाना (Police Station)",
+    wiz_cond_crim_district: "जिला",
+    wiz_cond_crim_role: "आपकी भूमिका",
+    wiz_cond_crim_stage: "वर्तमान चरण",
+    wiz_cond_crim_notice: "यह फॉर्म केवल जानकारी एकत्र करता है। यह दोष निर्धारित नहीं करता या आचरण को अपराध के रूप में वर्गीकृत नहीं करता।",
+
+    wiz_cond_prop_title: "संपत्ति के मामले का विवरण",
+    wiz_cond_prop_loc: "संपत्ति का स्थान",
+    wiz_cond_prop_type: "संपत्ति का प्रकार",
+    wiz_cond_prop_type_ph: "आवासीय / कृषि / वाणिज्यिक",
+    wiz_cond_prop_issue: "स्वामित्व / कब्जे का मुद्दा",
+    wiz_cond_prop_parties: "शामिल अन्य पक्षकार",
+
+    wiz_cond_civil_title: "दीवानी विवाद का विवरण",
+    wiz_cond_civil_parties: "शामिल पक्षकार",
+    wiz_cond_civil_relief: "मांगा गया उपचार (Relief)",
+    wiz_cond_civil_relief_ph: "आप क्या परिणाम चाह रहे हैं?",
+
+    wiz_cond_fam_title: "पारिवारिक / वैवाहिक विवरण",
+    wiz_cond_fam_type: "पारिवारिक मामले का प्रकार",
+    wiz_cond_fam_dates: "प्रासंगिक तिथियां",
+    wiz_cond_fam_dates_ph: "जैसे विवाह / अलगाव की तिथि",
+
+    wiz_cond_comm_title: "वाणिज्यिक मामले का विवरण",
+    wiz_cond_comm_biz: "व्यवसाय / संस्था का नाम",
+    wiz_cond_comm_nature: "विवाद की प्रकृति",
+    wiz_cond_comm_contract: "अनुबंध / समझौते का संदर्भ",
+    wiz_cond_comm_deadline: "महत्वपूर्ण समय सीमा (यदि कोई हो)",
+
+    wiz_s3_title: "प्रासंगिक दस्तावेज अपलोड करें",
+    wiz_s3_sub: "वैकल्पिक, लेकिन आपके मामले के मूल्यांकन के लिए सहायक। दस्तावेज़ निजी तौर पर सुरक्षित रखे जाते हैं।",
+    wiz_s3_doc_type: "दस्तावेज़ का प्रकार",
+    wiz_s3_upload_zone: "दस्तावेज़ जोड़ने के लिए टैप करें<br><span style='font-size:11px;'>PDF, JPG, PNG &middot; अधिकतम 10MB</span>",
+    wiz_s3_choose_btn: "फ़ाइल चुनें",
+    wiz_s3_no_docs: "कोई दस्तावेज़ अपलोड नहीं किया गया<br><span style='font-size:12px;'>अपलोड किए गए दस्तावेज़ यहाँ दिखाई देंगे।</span>",
+    wiz_s3_remove: "हटाएं",
+    wiz_s3_notice: "दस्तावेज़ों को निजी तौर पर संग्रहीत किया जाता है और उन्हें कभी भी सार्वजनिक रूप से उपलब्ध नहीं कराया जाता है।",
+
+    wiz_s4_title: "आपके संपर्क विवरण",
+    wiz_s4_sub: "हम इसका उपयोग आपके परामर्श अनुरोध के संबंध में आपसे संपर्क करने के लिए करेंगे।",
+    wiz_s4_name: "पूरा नाम",
+    wiz_s4_mobile: "मोबाइल नंबर",
+    wiz_s4_mobile_ph: "10-अंकों का मोबाइल नंबर",
+    wiz_s4_email: "ईमेल आईडी",
+    wiz_s4_city: "शहर",
+    wiz_s4_pref: "पसंदीदा संचार माध्यम",
+    wiz_s4_confirm: "मैं पुष्टि करता/करती हूँ कि प्रदान की गई जानकारी मेरी सर्वोत्तम जानकारी के अनुसार सटीक है।",
+    wiz_s4_privacy: "मैंने गोपनीयता सूचना पढ़ ली है।",
+
+    wiz_s5_title: "अपॉइंटमेंट का अनुरोध करें",
+    wiz_s5_sub: "परामर्श का प्रकार चुनें, फिर पसंदीदा तिथि और समय का चयन करें।",
+    wiz_s5_type_inperson: "व्यक्तिगत रूप से",
+    wiz_s5_type_inperson_d: "कार्यालय परामर्श",
+    wiz_s5_type_phone: "फोन",
+    wiz_s5_type_phone_d: "फोन पर वक्ता",
+    wiz_s5_type_video: "वीडियो",
+    wiz_s5_type_video_d: "ऑनलाइन वीडियो परामर्श",
+    wiz_s5_date: "तिथि चुनें",
+    wiz_s5_no_slots: "इस तिथि पर कोई अपॉइंटमेंट उपलब्ध नहीं है।<br>कृपया कोई अन्य तिथि चुनें।",
+    wiz_s5_notice: "यह अपॉइंटमेंट के लिए एक अनुरोध है। यह स्वतः पक्का नहीं होता — कार्यालय इसकी समीक्षा कर पुष्टि भेजेगा।",
+
+    wiz_s6_title: "अपने अनुरोध की समीक्षा करें",
+    wiz_s6_sub: "कृपया सबमिट करने से पहले नीचे दिए गए विवरणों की समीक्षा करें।",
+    wiz_s6_edit: "संशोधित करें &rarr;",
+    wiz_s6_matter: "मामला",
+    wiz_s6_case_details: "मामले का विवरण",
+    wiz_s6_type: "प्रकार",
+    wiz_s6_desc: "विवरण",
+    wiz_s6_loc: "स्थान",
+    wiz_s6_existing: "मौजूदा मामला लंबित है",
+    wiz_s6_documents: "दस्तावेज़",
+    wiz_s6_files: "दस्तावेज़ों की संख्या",
+    wiz_s6_contact: "संपर्क विवरण",
+    wiz_s6_name: "नाम",
+    wiz_s6_mobile: "मोबाइल नंबर",
+    wiz_s6_email: "ईमेल",
+    wiz_s6_appointment: "अपॉइंटमेंट",
+    wiz_s6_date: "तिथि",
+    wiz_s6_time: "समय",
+    wiz_s6_notice: "यह अनुरोध सबमिट करने मात्र से अधिवक्ता-मुवक्किल संबंध स्थापित नहीं होता है।",
+
+    suc_received: "अनुरोध प्राप्त हुआ",
+    suc_lead: "आपका कानूनी परामर्श अनुरोध समीक्षा के लिए जमा कर दिया गया है। कार्यालय पुष्टि के लिए आपसे संपर्क करेगा।",
+    suc_ref: "संदर्भ संख्या",
+    suc_pending: "समीक्षा लंबित",
+    suc_req_date: "अनुरोधित तिथि",
+    suc_req_time: "अनुरोधित समय",
+    suc_type: "परामर्श का प्रकार",
+    suc_btn_track: "अनुरोध की स्थिति ट्रैक करें",
+    suc_btn_home: "मुख्य पृष्ठ पर लौटें",
+
+    stat_title: "अपने अनुरोध को ट्रैक करें",
+    stat_step1_t: "अनुरोध जमा किया गया",
+    stat_step1_d: "आपका परामर्श अनुरोध सफलतापूर्वक प्राप्त हो गया है।",
+    stat_step2_t: "समीक्षा के अधीन",
+    stat_step2_d: "कार्यालय आपके अनुरोध और उपलब्धता की समीक्षा कर रहा है।",
+    stat_step3_t: "पुष्टि की गई",
+    stat_step3_d: "आपकी अपॉइंटमेंट तिथि और समय की पुष्टि यहाँ दिखाई देगी।",
+    stat_step4_t: "पूर्ण हुआ",
+    stat_step4_d: "परामर्श पूरा होने के बाद अपडेट किया जाएगा।",
+    stat_notice: "यदि पुष्टि से पहले अतिरिक्त विवरण की आवश्यकता होगी, तो स्थिति **अतिरिक्त जानकारी आवश्यक** के रूप में भी दिख सकती है।"
+  }
+};
+
+/* ============ DYNAMIC DATA OBJECTS ============ */
+const SERVICES = {
+  en: [
+    {t:"Criminal Defence",cat:"Litigation",d:"Bail, criminal proceedings, investigation and trial representation.",slug:"criminal-defence"},
+    {t:"Civil Litigation",cat:"Litigation",d:"Civil disputes, recovery matters, injunctions and related proceedings.",slug:"civil-litigation"},
+    {t:"Property & Land",cat:"Advisory",d:"Property disputes, ownership matters and documentation.",slug:"property-land"},
+    {t:"Family & Matrimonial",cat:"Litigation",d:"Matrimonial disputes, maintenance, custody and related proceedings.",slug:"family-matrimonial"},
+    {t:"Commercial Matters",cat:"Advisory",d:"Contracts, business disputes and commercial proceedings.",slug:"commercial-matters"},
+    {t:"Constitutional / Writ",cat:"Litigation",d:"Constitutional remedies and writ proceedings.",slug:"constitutional-writ"}
+  ],
+  hi: [
+    {t:"आपराधिक बचाव",cat:"वाद-विवाद (Litigation)",d:"जमानत, आपराधिक कार्यवाही, जांच और मुकदमे में प्रतिनिधित्व।",slug:"criminal-defence"},
+    {t:"दीवानी वाद",cat:"वाद-विवाद (Litigation)",d:"दीवानी विवाद, वसूली के मामले, व्यादेश और संबंधित कार्यवाही।",slug:"civil-litigation"},
+    {t:"संपत्ति एवं भूमि संबंधी मामले",cat:"परामर्श (Advisory)",d:"संपत्ति के विवाद, स्वामित्व के मामले और दस्तावेज़ीकरण।",slug:"property-land"},
+    {t:"पारिवारिक एवं वैवाहिक मामले",cat:"वाद-विवाद (Litigation)",d:"वैवाहिक विवाद, भरण-पोषण, कस्टडी और संबंधित कार्यवाही।",slug:"family-matrimonial"},
+    {t:"वाणिज्यिक मामले",cat:"परामर्श (Advisory)",d:"अनुबंध, व्यावसायिक विवाद और वाणिज्यिक कार्यवाही।",slug:"commercial-matters"},
+    {t:"संवैधानिक एवं रिट संबंधी मामले",cat:"वाद-विवाद (Litigation)",d:"संवैधानिक उपचार और रिट याचिका कार्यवाही।",slug:"constitutional-writ"}
+  ]
+};
+
+const COURTS = {
+  en: [
+    {t:"High Courts",d:"Matters as briefed and instructed"},
+    {t:"District Courts",d:"Regular appearance"},
+    {t:"Trial Courts",d:"Trial-stage representation"},
+    {t:"Tribunals",d:"Specialised forums"}
+  ],
+  hi: [
+    {t:"उच्च न्यायालय (High Courts)",d:"निर्देश और ब्रीफ के अनुसार मामले"},
+    {t:"जिला न्यायालय (District Courts)",d:"नियमित उपस्थिति"},
+    {t:"विचारण न्यायालय (Trial Courts)",d:"मुकदमे के चरण में प्रतिनिधित्व"},
+    {t:"अधिकरण (Tribunals)",d:"विशेष मंच"}
+  ]
+};
+
+const TIMELINE = {
+  en: [
+    {y:"2008",d:"Began legal practice."},
+    {y:"2012",d:"Expanded litigation practice."},
+    {y:"2017",d:"Established independent legal practice in Gorakhpur."},
+    {y:"2021",d:"Expanded practice across multiple courts and forums."},
+    {y:"2026",d:"18+ years of professional practice."}
+  ],
+  hi: [
+    {y:"2008",d:"कानूनी वकालत शुरू की।"},
+    {y:"2012",d:"मुकदमेबाजी अभ्यास का विस्तार किया।"},
+    {y:"2017",d:"गोरखपुर में स्वतंत्र कानूनी वकालत की स्थापना की।"},
+    {y:"2021",d:"विभिन्न न्यायालयों और मंचों में वकालत का विस्तार किया।"},
+    {y:"2026",d:"18+ वर्षों का पेशेवर अनुभव।"}
+  ]
+};
+
+const MATTERS = {
+  en: [
+    {t:"Property Dispute",cat:"Property Law",yr:"2025",slug:"property-dispute",nature:"Property dispute involving ownership and possession.",rep:"Legal representation and proceedings."},
+    {t:"Bail & Criminal Defence",cat:"Criminal Law",yr:"2026",slug:"bail-criminal-defence",nature:"Representation in bail proceedings and criminal defence matters.",rep:"Legal representation and proceedings."},
+    {t:"Commercial Contract Dispute",cat:"Commercial Law",yr:"2025",slug:"commercial-contract-dispute",nature:"Dispute arising from a commercial contract between parties.",rep:"Legal representation and proceedings."},
+    {t:"Matrimonial Proceedings",cat:"Family Law",yr:"2024",slug:"matrimonial-proceedings",nature:"Matrimonial dispute involving related family court proceedings.",rep:"Legal representation and proceedings."},
+    {t:"Writ Petition",cat:"Constitutional Law",yr:"2024",slug:"writ-petition",nature:"Constitutional remedy sought through writ proceedings.",rep:"Legal representation and proceedings."}
+  ],
+  hi: [
+    {t:"संपत्ति का विवाद",cat:"संपत्ति कानून",yr:"2025",slug:"property-dispute",nature:"स्वामित्व और कब्जे से संबंधित संपत्ति का विवाद।",rep:"कानूनी प्रतिनिधित्व और अदालती कार्यवाही।"},
+    {t:"जमानत और आपराधिक बचाव",cat:"आपराधिक कानून",yr:"2026",slug:"bail-criminal-defence",nature:"जमानत याचिकाओं और आपराधिक बचाव के मामलों में प्रतिनिधित्व।",rep:"कानूनी प्रतिनिधित्व और अदालती कार्यवाही।"},
+    {t:"वाणिज्यिक अनुबंध विवाद",cat:"वाणिज्यिक कानून",yr:"2025",slug:"commercial-contract-dispute",nature:"पक्षकारों के बीच वाणिज्यिक अनुबंध से उत्पन्न विवाद।",rep:"कानूनी प्रतिनिधित्व और अदालती कार्यवाही।"},
+    {t:"वैवाहिक कार्यवाही",cat:"पारिवारिक कानून",yr:"2024",slug:"matrimonial-proceedings",nature:"वैवाहिक विवाद जिसमें संबंधित पारिवारिक न्यायालय की कार्यवाही शामिल है।",rep:"कानूनी प्रतिनिधित्व और अदालती कार्यवाही।"},
+    {t:"रिट याचिका",cat:"संवैधानिक कानून",yr:"2024",slug:"writ-petition",nature:"रिट कार्यवाही के माध्यम से संवैधानिक उपचार की मांग।",rep:"कानूनी प्रतिनिधित्व और अदालती कार्यवाही।"}
+  ]
+};
+
+const TESTIMONIALS = {
+  en: [
+    {q:"Professional, thorough and clear throughout the consultation.",n:"Rahul Verma",r:"Client"},
+    {q:"Explained the process patiently and kept me informed at every stage.",n:"Anjali Mehra",r:"Client"},
+    {q:"Careful preparation and honest guidance from the very first meeting.",n:"Sanjay Kapoor",r:"Client"}
+  ],
+  hi: [
+    {q:"परामर्श के दौरान पेशेवर, विस्तृत और स्पष्ट दृष्टिकोण रहा।",n:"राहुल वर्मा",r:"मुवक्किल"},
+    {q:"प्रक्रिया को धैर्यपूर्वक समझाया और हर स्तर पर मुझे सूचित रखा।",n:"अंजलि मेहरा",r:"मुवक्किल"},
+    {q:"पहली ही मुलाकात से सावधानीपूर्वक तैयारी और ईमानदार मार्गदर्शन मिला।",n:"संजय कपूर",r:"मुवक्किल"}
+  ]
+};
+
+const ARTICLES = {
+  en: [
+    {t:"Understanding the Bail Process in India",cat:"Criminal Law",read:"5 min read",slug:"bail-process",
+     body:[
+       "Bail is a mechanism that allows a person to remain at liberty while a criminal proceeding continues.",
+       "The process and considerations differ depending on the stage of the case and the nature of the offence alleged.",
+       "Legal representation at this stage can help ensure the relevant facts are placed before the court clearly.",
+       "Every case turns on its own facts, and outcomes should never be assumed in advance."
+     ]},
+    {t:"What Should You Do After Receiving a Legal Notice?",cat:"Civil Law",read:"6 min read",slug:"legal-notice",
+     body:[
+       "Receiving a legal notice can be unsettling, but a measured response matters more than a hasty one.",
+       "Begin by reading the notice carefully and noting every date, deadline and claim it contains.",
+       "Consult a lawyer before responding, since an informal reply can sometimes affect your position later.",
+       "Gather any documents relevant to the matter the notice concerns."
+     ]},
+    {t:"Common Mistakes in Property Disputes",cat:"Property Law",read:"7 min read",slug:"property-mistakes",
+     body:[
+       "Many property disputes are complicated by missing or incomplete documentation.",
+       "Verifying title and ownership history early can prevent avoidable delays later.",
+       "Informal settlements without proper documentation can sometimes create further disputes.",
+       "Seeking legal guidance before taking possession-related steps is generally advisable."
+     ]},
+    {t:"When Should You Consult a Lawyer?",cat:"Legal Guidance",read:"4 min read",slug:"when-to-consult",
+     body:[
+       "Many people wait until a dispute has escalated before seeking legal advice.",
+       "An early consultation can help clarify your options and the likely process ahead.",
+       "This is especially relevant where deadlines, notices or hearings are involved.",
+       "A consultation does not commit you to any course of action."
+     ]}
+  ],
+  hi: [
+    {t:"भारत में जमानत की प्रक्रिया को समझना",cat:"आपराधिक कानून",read:"5 मिनट पठन",slug:"bail-process",
+     body:[
+       "जमानत एक ऐसा तंत्र है जो आपराधिक कार्यवाही के दौरान किसी व्यक्ति को स्वतंत्र रहने की अनुमति देता है।",
+       "मामले के चरण और कथित अपराध की प्रकृति के आधार पर प्रक्रिया और विचार भिन्न होते हैं।",
+       "इस स्तर पर कानूनी प्रतिनिधित्व यह सुनिश्चित करने में मदद कर सकता है कि संबंधित तथ्यों को न्यायालय के समक्ष स्पष्ट रूप से रखा जाए।",
+       "प्रत्येक मामला अपने स्वयं के तथ्यों पर निर्भर करता है, और परिणामों की पहले से कल्पना नहीं की जानी चाहिए।"
+     ]},
+    {t:"कानूनी नोटिस मिलने के बाद आपको क्या करना चाहिए?",cat:"दीवानी कानून",read:"6 मिनट पठन",slug:"legal-notice",
+     body:[
+       "कानूनी नोटिस प्राप्त होना चिंताजनक हो सकता है, लेकिन जल्दबाजी में प्रतिक्रिया देने के बजाय नपा-तुला कदम उठाना अधिक महत्वपूर्ण है।",
+       "नोटिस को ध्यान से पढ़ना शुरू करें और उसमें शामिल प्रत्येक तिथि, समय सीमा और दावे को नोट करें।",
+       "जवाब देने से पहले किसी अधिवक्ता से परामर्श लें, क्योंकि अनौपचारिक उत्तर बाद में आपकी स्थिति को प्रभावित कर सकता है।",
+       "उस विषय से संबंधित सभी आवश्यक दस्तावेज एकत्र करें जिससे नोटिस संबंधित है।"
+     ]},
+    {t:"संपत्ति के विवादों में आम गलतियां",cat:"संपत्ति कानून",read:"7 मिनट पठन",slug:"property-mistakes",
+     body:[
+       "कई संपत्ति विवाद गायब या अपूर्ण दस्तावेज़ीकरण के कारण जटिल हो जाते हैं।",
+       "स्वामित्व और इतिहास का समय पर सत्यापन बाद में होने वाले अनावश्यक विलंब को रोक सकता है।",
+       "उचित कानूनी दस्तावेज़ों के बिना किए गए अनौपचारिक समझौते कभी-कभी नए विवाद पैदा कर सकते हैं।",
+       "कब्जे से संबंधित कदम उठाने से पहले कानूनी मार्गदर्शन लेना सामान्यतः उचित है।"
+     ]},
+    {t:"आपको किसी अधिवक्ता से कब परामर्श करना चाहिए?",cat:"कानूनी मार्गदर्शन",read:"4 मिनट पठन",slug:"when-to-consult",
+     body:[
+       "कई लोग विवाद बढ़ने तक कानूनी सलाह लेने के लिए प्रतीक्षा करते हैं।",
+       "शुरुआती परामर्श आपके विकल्पों और आगे की संभावित प्रक्रिया को स्पष्ट करने में मदद कर सकता है।",
+       "यह विशेष रूप से तब महत्वपूर्ण है जब समय सीमा, नोटिस या सुनवाई शामिल हो।",
+       "केवल परामर्श लेने से आप किसी भी कानूनी कार्रवाई के लिए बाध्य नहीं होते हैं।"
+     ]}
+  ]
+};
+
+const FAQS = {
+  en: [
+    {q:"How do I request a consultation?",a:"Use the “Request Consultation” option available throughout the website to begin the intake process."},
+    {q:"Can I consult remotely?",a:"Yes. Phone and video consultations can be requested alongside in-person office consultations."},
+    {q:"What information should I provide?",a:"Provide a brief, accurate description of your matter along with any relevant dates, documents and case details you have available."},
+    {q:"Can I submit details about a pending case?",a:"Yes, the intake form allows you to provide court, case number and current stage details for an existing matter."},
+    {q:"Is my appointment automatically confirmed?",a:"No. Every appointment is a request. It is reviewed by the office and confirmed separately."},
+    {q:"Does submitting the form create an advocate-client relationship?",a:"No. Submitting a consultation request does not by itself establish an advocate-client relationship."},
+    {q:"How is my information handled?",a:"Information is stored securely and used only to evaluate and respond to your consultation request."}
+  ],
+  hi: [
+    {q:"मैं कानूनी परामर्श के लिए कैसे अनुरोध करूं?",a:"परामर्श की प्रक्रिया शुरू करने के लिए वेबसाइट पर उपलब्ध “कानूनी परामर्श का अनुरोध” विकल्प का उपयोग करें।"},
+    {q:"क्या मैं दूरस्थ (remote) परामर्श प्राप्त कर सकता हूँ?",a:"हाँ। कार्यालय में व्यक्तिगत परामर्श के साथ-साथ फोन और वीडियो परामर्श का भी अनुरोध किया जा सकता है।"},
+    {q:"मुझे क्या जानकारी प्रदान करनी चाहिए?",a:"अपने मामले का एक संक्षिप्त, सटीक विवरण और आपके पास उपलब्ध प्रासंगिक तिथियां, दस्तावेज और अदालती विवरण प्रदान करें।"},
+    {q:"क्या मैं लंबित मामले का विवरण जमा कर सकता हूँ?",a:"हाँ, आवेदन फॉर्म में आप मौजूदा मामले के लिए न्यायालय, केस संख्या और वर्तमान चरण का विवरण प्रदान कर सकते हैं।"},
+    {q:"क्या मेरी नियुक्ति (appointment) स्वतः ही पक्की हो जाती है?",a:"नहीं। हर नियुक्ति केवल एक अनुरोध है। कार्यालय द्वारा इसकी समीक्षा की जाती है और पुष्टि अलग से भेजी जाती है।"},
+    {q:"क्या फॉर्म जमा करने से अधिवक्ता-मुवक्किल संबंध स्थापित हो जाता है?",a:"नहीं। केवल परामर्श का अनुरोध जमा करने से अधिवक्ता-मुवक्किल संबंध स्थापित नहीं होता है।"},
+    {q:"मेरी जानकारी का प्रबंधन कैसे किया जाता है?",a:"जानकारी को सुरक्षित रूप से संग्रहीत किया जाता है और इसका उपयोग केवल आपके परामर्श अनुरोध का मूल्यांकन और उत्तर देने के लिए किया जाता है।"}
+  ]
+};
+
+const STEP_LABELS = {
+  en: ["What Type of Matter?","Matter Details","Contact Details","Appointment","Review Request"],
+  hi: ["मामले का प्रकार","मामले का विवरण","संपर्क विवरण","अपॉइंटमेंट","समीक्षा"]
+};
+
+const SLOTS={
+ "19 AUG":[{t:"10:00 AM",ok:true},{t:"11:30 AM",ok:true},{t:"4:30 PM",ok:true}],
+ "20 AUG":[{t:"10:30 AM",ok:true},{t:"1:00 PM",ok:false},{t:"5:00 PM",ok:true}],
+ "21 AUG":[{t:"9:30 AM",ok:true},{t:"12:00 PM",ok:true},{t:"3:00 PM",ok:false}]
+};
+
+/* ============ STATE ============ */
+let currentLang = localStorage.getItem('preferredLanguage') || null;
+let consultation = {matterType:null, details:{}, criminal:{}, civil:{}, family:{}, commercial:{}, contact:{}, appointment:{}};
+let wizardStep = 1;
+const TOTAL_STEPS = 5;
+let lastRef = null;
+let testimonialIndex = 0;
+
+/* ============ LANGUAGE HANDLERS ============ */
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('preferredLanguage', lang);
+  route();
+}
+
+function toggleLanguage() {
+  currentLang = currentLang === 'en' ? 'hi' : 'en';
+  localStorage.setItem('preferredLanguage', currentLang);
+  route();
+}
+
+/* ============ ROUTER ============ */
+function route(){
+  const app = document.getElementById('app');
+  updateDrawer();
+  
+  if (!currentLang) {
+    app.innerHTML = pageLangSelect();
+    document.title = "Mihir Shukla — Advocate";
+    return;
+  }
+  
+  document.title = currentLang === 'hi' ? 'मिहिर शुक्ला — अधिवक्ता' : 'Mihir Shukla — Advocate';
+  const hash = location.hash.replace('#','') || '/';
+  window.scrollTo(0,0);
+  if(hash==='/') app.innerHTML = pageHome();
+  else if(hash==='/about') app.innerHTML = pageAbout();
+  else if(hash==='/practice-areas') app.innerHTML = pagePracticeAreas();
+  else if(hash.startsWith('/practice-areas/')) app.innerHTML = pagePracticeDetail(hash.split('/')[2]);
+  else if(hash==='/experience') app.innerHTML = pageExperience();
+  else if(hash==='/courts') app.innerHTML = pageCourts();
+  else if(hash==='/selected-matters') app.innerHTML = pageMatters();
+  else if(hash.startsWith('/selected-matters/')) app.innerHTML = pageMatterDetail(hash.split('/')[2]);
+  else if(hash==='/insights') app.innerHTML = pageInsights();
+  else if(hash.startsWith('/insights/')) app.innerHTML = pageArticleDetail(hash.split('/')[2]);
+  else if(hash==='/faq') app.innerHTML = pageFAQ();
+  else if(hash==='/contact') app.innerHTML = pageContact();
+  else if(hash.startsWith('/consultation/status')) app.innerHTML = pageStatus();
+  else if(hash.startsWith('/consultation/success')) app.innerHTML = pageSuccess();
+  else if(hash.startsWith('/consultation')) app.innerHTML = pageWizard();
+  else app.innerHTML = pageHome();
+}
+window.addEventListener('hashchange', route);
+
+/* ============ SHARED TEMPLATES ============ */
+function header(){
+  return `
+  <header class="site">
+    <div class="header-row">
+      <a href="#/" class="brand">
+        <div class="name">${T[currentLang].brand_name}</div>
+        <div class="role">${T[currentLang].brand_role}</div>
+      </a>
+      <nav class="desktop-nav">
+        <a href="#/about">${T[currentLang].nav_about}</a>
+        <a href="#/practice-areas">${T[currentLang].nav_practice}</a>
+        <a href="#/experience">${T[currentLang].nav_experience}</a>
+        <a href="#/selected-matters">${T[currentLang].nav_matters}</a>
+        <a href="#/insights">${T[currentLang].nav_insights}</a>
+        <a href="#/faq">${T[currentLang].nav_faqs}</a>
+        <a href="#/contact">${T[currentLang].nav_contact}</a>
+        <button onclick="toggleLanguage()" class="lang-toggle-btn">${currentLang === 'en' ? 'हिन्दी' : 'English'}</button>
+        <a href="#/consultation" class="btn btn-primary">${T[currentLang].nav_request_btn}</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button onclick="toggleLanguage()" class="lang-toggle-btn mobile-lang-btn">${currentLang === 'en' ? 'हिन्दी' : 'English'}</button>
+        <button class="hamburger" aria-label="Open menu" onclick="openDrawer()"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>`;
+}
+
+function bottomBar(){
+  if (!currentLang) return '';
+  return `
+  <div class="bottom-bar">
+    <a class="call" href="tel:+919876543210"><span class="ic">&#128222;</span>${T[currentLang].nav_call}</a>
+    <a class="wa" href="https://wa.me/919876543210" target="_blank"><span class="ic">&#128172;</span>${T[currentLang].nav_whatsapp_bar}</a>
+    <a class="consult" href="#/consultation"><span class="ic">&#9998;</span>${T[currentLang].nav_consult_bar}</a>
+  </div>`;
+}
+
+function footer(){
+  return `
+  <footer class="site">
+    <div class="container">
+      <div class="fname">${T[currentLang].brand_name}</div>
+      <div class="frole">${T[currentLang].brand_role}</div>
+      <div class="foot-nav">
+        <a href="#/about">${T[currentLang].nav_about}</a>
+        <a href="#/practice-areas">${T[currentLang].nav_practice}</a>
+        <a href="#/selected-matters">${T[currentLang].nav_matters}</a>
+        <a href="#/insights">${T[currentLang].nav_insights}</a>
+        <a href="#/faq">${T[currentLang].nav_faqs}</a>
+        <a href="#/contact">${T[currentLang].nav_contact}</a>
+      </div>
+      <div class="foot-legal">${T[currentLang].foot_legal}</div>
+      <div class="foot-bottom">
+        <span>${T[currentLang].foot_bottom_text}</span>
+        <span><a href="#/faq">${T[currentLang].foot_privacy}</a> &nbsp;&middot;&nbsp; <a href="#/faq">${T[currentLang].foot_terms}</a></span>
+      </div>
+    </div>
+  </footer>`;
+}
+
+function updateDrawer(){
+  const dr = document.getElementById('drawer');
+  if(!dr) return;
+  if(!currentLang){
+    dr.style.display = 'none';
+    return;
+  }
+  dr.style.display = '';
+  dr.innerHTML = `
+  <div style="display:flex;justify-content:flex-end;align-items:center;gap:12px;">
+    <button onclick="toggleLanguage()" class="lang-toggle-btn" style="border-color: var(--navy); color: var(--navy); margin-right:auto; padding:4px 10px; font-size:11.5px;">${currentLang === 'en' ? 'हिन्दी' : 'English'}</button>
+    <button class="drawer-close" onclick="closeDrawer()" aria-label="Close menu">&times;</button>
+  </div>
+  <nav>
+    <a href="#/about" onclick="closeDrawer()">${T[currentLang].nav_about}</a>
+    <a href="#/practice-areas" onclick="closeDrawer()">${T[currentLang].nav_practice}</a>
+    <a href="#/experience" onclick="closeDrawer()">${T[currentLang].nav_experience}</a>
+    <a href="#/selected-matters" onclick="closeDrawer()">${T[currentLang].nav_matters}</a>
+    <a href="#/insights" onclick="closeDrawer()">${T[currentLang].nav_insights}</a>
+    <a href="#/faq" onclick="closeDrawer()">${T[currentLang].nav_faqs}</a>
+    <a href="#/contact" onclick="closeDrawer()">${T[currentLang].nav_contact}</a>
+  </nav>
+  <div class="actions">
+    <a class="btn btn-primary btn-block" href="#/consultation" onclick="closeDrawer()">${T[currentLang].nav_request_btn}</a>
+    <a class="btn btn-outline btn-block" href="https://wa.me/919876543210" target="_blank">${T[currentLang].nav_whatsapp}</a>
+  </div>`;
+}
+
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('drawerBackdrop').classList.add('open');}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawerBackdrop').classList.remove('open');}
+
+function mapVisual(){
+  return `<svg viewBox="0 0 300 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="60" y1="40" x2="150" y2="90" stroke="#D8CDA6" stroke-width="1"/>
+    <line x1="150" y1="90" x2="235" y2="55" stroke="#D8CDA6" stroke-width="1"/>
+    <line x1="150" y1="90" x2="110" y2="165" stroke="#D8CDA6" stroke-width="1"/>
+    <line x1="150" y1="90" x2="220" y2="160" stroke="#D8CDA6" stroke-width="1"/>
+    <line x1="60" y1="40" x2="40" y2="120" stroke="#D8CDA6" stroke-width="1"/>
+    <circle cx="150" cy="90" r="7" fill="#AD8A4E"/>
+    <circle cx="60" cy="40" r="4.5" fill="#0E1B33"/>
+    <circle cx="235" cy="55" r="4.5" fill="#0E1B33"/>
+    <circle cx="110" cy="165" r="4.5" fill="#0E1B33"/>
+    <circle cx="220" cy="160" r="4.5" fill="#0E1B33"/>
+    <circle cx="40" cy="120" r="4.5" fill="#0E1B33"/>
+  </svg>`;
+}
+
+/* ============ PAGE: LANGUAGE SELECT ============ */
+function pageLangSelect() {
+  return `
+  <div class="lang-overlay">
+    <h1>${T.en.lang_title}</h1>
+    <div class="role">${T.en.lang_subtitle}</div>
+    <p>${T.en.lang_prompt} / ${T.hi.lang_prompt}</p>
+    <div class="btn-grid">
+      <button class="btn btn-gold" onclick="setLanguage('en')">${T.en.lang_btn_en}</button>
+      <button class="btn btn-gold" onclick="setLanguage('hi')">${T.en.lang_btn_hi}</button>
+    </div>
+  </div>`;
+}
+
+/* ============ PAGE: HOME ============ */
+function pageHome(){
+  return header() + `
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">${T[currentLang].hero_eyebrow}</div>
+      <h1>${T[currentLang].hero_title}</h1>
+      <p class="lead">${T[currentLang].hero_lead}</p>
+      <div class="hero-btns">
+        <a href="#/consultation" class="btn btn-gold">${T[currentLang].hero_cta}</a>
+        <a href="#/about" class="text-link navy">${T[currentLang].hero_view_profile}</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="https://images.unsplash.com/photo-1589391886645-d51941baf7fb?q=80&w=1200&auto=format&fit=crop" alt="Advocate Mihir Shukla in Gorakhpur">
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">18+</div><div class="label">${T[currentLang].hero_stat_years}</div></div>
+      <div class="stat"><div class="num">1000+</div><div class="label">${T[currentLang].hero_stat_matters}</div></div>
+      <div class="stat"><div class="num">${currentLang === 'hi' ? 'विभिन्न' : 'Multiple'}</div><div class="label">${T[currentLang].hero_stat_courts}</div></div>
+    </div>
+  </section>
+
+  <section class="about-sec container">
+    <div class="sec-head">
+      <div class="eyebrow">${T[currentLang].about_eyebrow}</div>
+      <h2>${T[currentLang].about_title}</h2>
+    </div>
+    <div class="about-id" style="margin-top:12px; padding-top:12px; border-top:none;">
+      <div class="who" style="font-size:18px;">${T[currentLang].about_name}</div>
+      <div class="role" style="font-size:12.5px; color:var(--gold); font-weight:600; margin-top:2px;">${T[currentLang].about_role}</div>
+      <div class="meta" style="font-size:12.5px; color:var(--grey); margin-top:4px;">${currentLang === 'hi' ? 'गोरखपुर · उत्तर प्रदेश' : 'Gorakhpur · Uttar Pradesh'}</div>
+    </div>
+    <p class="about-lead" style="margin-top:12px; font-size:14.5px; color:var(--grey); line-height:1.6;">${T[currentLang].about_lead}</p>
+    <a href="#/about" class="text-link" style="margin-top:16px;">${T[currentLang].about_view_full}</a>
+  </section>
+
+  <section class="dark-sec lg">
+    <div class="container expertise-head">
+      <h2><span class="thin">${T[currentLang].exp_eyebrow}</span>${T[currentLang].exp_title}</h2>
+      <p style="color:#B7BFD3;font-size:14px;margin-top:14px;max-width:34ch;">${T[currentLang].exp_lead}</p>
+      <div style="font-size:18px;margin-top:14px;color:var(--gold-light);">↓</div>
+    </div>
+    <div class="carousel" style="margin-top:16px;">
+      ${SERVICES[currentLang].map((s,i)=>`
+      <a class="svc" href="#/practice-areas/${s.slug}">
+        <div class="svc-card">
+          <div class="idx">0${i+1}</div>
+          <div class="cat">${s.cat}</div>
+          <h3>${s.t}</h3>
+          <p>${s.d}</p>
+          <span class="text-link dark">${T[currentLang].exp_explore}</span>
+        </div>
+      </a>`).join('')}
+    </div>
+    <div class="swipe-hint">${T[currentLang].exp_swipe}</div>
+  </section>
+
+  <section class="container">
+    <div class="sec-head">
+      <div class="eyebrow">${T[currentLang].courts_eyebrow}</div>
+      <h2>${T[currentLang].courts_title}</h2>
+    </div>
+    <div class="map-visual">${mapVisual()}</div>
+    <div class="court-list">
+      ${COURTS[currentLang].map(c=>`<div class="court-row"><div class="t">${c.t}</div><div class="d">${c.d}</div></div>`).join('')}
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="sec-head">
+      <div class="eyebrow">${T[currentLang].why_eyebrow}</div>
+      <h2>${T[currentLang].why_title}</h2>
+    </div>
+    <div class="why-list">
+      <div class="why-row"><div class="n">01</div><div><div class="t">${T[currentLang].why_01_t}</div><div class="d">${T[currentLang].why_01_d}</div></div></div>
+      <div class="why-row"><div class="n">02</div><div><div class="t">${T[currentLang].why_02_t}</div><div class="d">${T[currentLang].why_02_d}</div></div></div>
+      <div class="why-row"><div class="n">03</div><div><div class="t">${T[currentLang].why_03_t}</div><div class="d">${T[currentLang].why_03_d}</div></div></div>
+      <div class="why-row"><div class="n">04</div><div><div class="t">${T[currentLang].why_04_t}</div><div class="d">${T[currentLang].why_04_d}</div></div></div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="sec-head"><div class="eyebrow">${T[currentLang].time_eyebrow}</div><h2>${T[currentLang].time_title}</h2></div>
+    <div class="timeline">
+      ${TIMELINE[currentLang].map(t=>`<div class="tl-item"><div class="yr">${t.y}</div><p>${t.d}</p></div>`).join('')}
+    </div>
+    <div class="demo-note">${T[currentLang].time_demo}</div>
+  </section>
+
+  <section class="container">
+    <div class="sec-head"><div class="eyebrow">${T[currentLang].matters_eyebrow}</div><h2>${T[currentLang].matters_title}</h2></div>
+    <div>
+      ${MATTERS[currentLang].slice(0,4).map(m=>`
+      <a class="matter-row" href="#/selected-matters/${m.slug}">
+        <div class="mr-top"><h3>${m.t}</h3><span class="arrow">&rarr;</span></div>
+        <div class="meta">${m.cat} &middot; ${m.yr}</div>
+      </a>`).join('')}
+    </div>
+    <a href="#/selected-matters" class="text-link" style="margin-top:20px;">${T[currentLang].matters_view_all}</a>
+  </section>
+
+  <section class="container">
+    <div class="sec-head"><div class="eyebrow">${T[currentLang].testi_eyebrow}</div><h2>${T[currentLang].testi_title}</h2></div>
+    <div id="testiWrap">${renderTestimonial()}</div>
+  </section>
+
+  <section class="container">
+    <div class="sec-head"><div class="eyebrow">${T[currentLang].insights_eyebrow}</div><h2>${T[currentLang].insights_title}</h2></div>
+    <a class="feature-article" href="#/insights/${ARTICLES[currentLang][0].slug}">
+      <div class="cat">${ARTICLES[currentLang][0].cat}</div>
+      <h3>${ARTICLES[currentLang][0].t}</h3>
+      <div class="rt">${ARTICLES[currentLang][0].read} &nbsp;&middot;&nbsp; ${T[currentLang].insights_read}</div>
+    </a>
+    <div>
+      ${ARTICLES[currentLang].slice(1).map(a=>`
+      <a class="article-row" href="#/insights/${a.slug}">
+        <div><div class="t">${a.t}</div><div class="meta">${a.cat} &middot; ${a.read}</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>`).join('')}
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="sec-head"><div class="eyebrow">${T[currentLang].faq_eyebrow}</div><h2>${T[currentLang].faq_title}</h2></div>
+    <div id="faq-preview">${faqAccordion(FAQS[currentLang].slice(0,4))}</div>
+    <a href="#/faq" class="text-link" style="margin-top:20px;">${T[currentLang].faq_view_all}</a>
+  </section>
+
+  <section class="cta-sec">
+    <div class="container">
+      <div class="eyebrow on-dark">${T[currentLang].ccta_eyebrow}</div>
+      <h2 style="margin-top:14px;">${T[currentLang].ccta_title}</h2>
+      <p>${T[currentLang].ccta_lead}</p>
+      <a href="#/consultation" class="btn btn-gold">${T[currentLang].ccta_btn}</a>
+    </div>
+  </section>
+
+  <section class="container">
+    ${contactBlock()}
+  </section>
+  ` + footer() + bottomBar();
+}
+
+function renderTestimonial(){
+  const list = TESTIMONIALS[currentLang];
+  const t = list[testimonialIndex];
+  return `
+  <div class="testi-wrap">
+    <span class="testi-quote">&ldquo;</span>
+    <p class="testi-text">${t.q}</p>
+    <div class="testi-who"><b>${t.n}</b> &middot; ${t.r}</div>
+    <div class="testi-nav">
+      <button onclick="shiftTestimonial(-1)" aria-label="Previous testimonial">&larr;</button>
+      <span class="count">0${testimonialIndex+1} / 0${list.length}</span>
+      <button onclick="shiftTestimonial(1)" aria-label="Next testimonial">&rarr;</button>
+    </div>
+  </div>`;
+}
+
+function shiftTestimonial(dir){
+  const list = TESTIMONIALS[currentLang];
+  testimonialIndex = (testimonialIndex + dir + list.length) % list.length;
+  const el = document.getElementById('testiWrap');
+  if(el) el.innerHTML = renderTestimonial();
+}
+
+function faqAccordion(items){
+  return `<div>${items.map((f)=>`
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">${f.q}<span class="plus">+</span></button>
+      <div class="faq-a"><p>${f.a}</p></div>
+    </div>`).join('')}</div>`;
+}
+
+function contactBlock(){
+  return `
+  <div class="sec-head"><div class="eyebrow">${T[currentLang].contact_eyebrow}</div><h2>${T[currentLang].contact_title}</h2></div>
+  <div class="contact-id">
+    <div class="who">${T[currentLang].about_name}</div>
+    <div class="role">${T[currentLang].brand_role}</div>
+  </div>
+  <div class="contact-list">
+    <div class="contact-row"><div class="k">${T[currentLang].contact_chamber_lbl}</div><div class="v">${T[currentLang].contact_chamber_val}</div></div>
+    <div class="contact-row"><div class="k">${T[currentLang].contact_loc_lbl}</div><div class="v">${T[currentLang].contact_loc_val}</div></div>
+    <div class="contact-row"><div class="k">${T[currentLang].contact_phone_lbl}</div><div class="v">${T[currentLang].contact_phone_val}</div></div>
+    <div class="contact-row"><div class="k">${T[currentLang].contact_email_lbl}</div><div class="v">${T[currentLang].contact_email_val}</div></div>
+    <div class="contact-row"><div class="k">${T[currentLang].contact_hours_lbl}</div><div class="v">${T[currentLang].contact_hours_val}</div></div>
+  </div>
+  <div class="contact-btns">
+    <a class="btn btn-outline btn-sm" href="tel:+919876543210">${T[currentLang].contact_btn_call}</a>
+    <a class="btn btn-outline btn-sm" href="https://wa.me/919876543210" target="_blank">${T[currentLang].contact_btn_wa}</a>
+    <a class="btn btn-outline btn-sm btn-dir" href="https://maps.google.com" target="_blank">${T[currentLang].contact_btn_dir}</a>
+  </div>`;
+}
+
+/* ============ PAGE: ABOUT ============ */
+function pageAbout(){
+  return header() + `
+  <div class="page-hero"><div class="container">
+    <div class="eyebrow on-dark">${T[currentLang].nav_about}</div>
+    <h1 style="margin-top:14px;">${T[currentLang].page_about_title}</h1>
+    <div class="meta">${T[currentLang].page_about_subtitle}</div>
+  </div></div>
+  <section class="container">
+    <p class="about-lead" style="font-size:15.5px;">${T[currentLang].page_about_p1}</p>
+    <div class="hairline" style="margin:26px 0;"></div>
+    <p style="font-size:14px;color:var(--grey);line-height:1.7;margin-bottom:16px;"><b style="color:var(--ink);">${T[currentLang].page_about_b1}</b>${T[currentLang].page_about_d1}</p>
+    <p style="font-size:14px;color:var(--grey);line-height:1.7;margin-bottom:16px;"><b style="color:var(--ink);">${T[currentLang].page_about_b2}</b>${T[currentLang].page_about_d2}</p>
+    <p style="font-size:14px;color:var(--grey);line-height:1.7;margin-bottom:16px;"><b style="color:var(--ink);">${T[currentLang].page_about_b3}</b>${T[currentLang].page_about_d3}</p>
+    <p style="font-size:14px;color:var(--grey);line-height:1.7;"><b style="color:var(--ink);">${T[currentLang].page_about_b4}</b>${T[currentLang].page_about_d4}</p>
+    <div class="about-id">
+      <div class="who">${T[currentLang].about_name}</div>
+      <div class="role">${T[currentLang].about_role}</div>
+      <div class="meta">${T[currentLang].about_meta_page}</div>
+    </div>
+    <div class="notice" style="margin-top:22px;">${T[currentLang].page_about_notice}</div>
+  </section>
+  <section class="container" style="padding-top: 0;"><a href="#/consultation" class="btn btn-primary btn-block">${T[currentLang].page_about_cta}</a></section>
+  ` + footer() + bottomBar();
+}
+
+/* ============ PAGE: PRACTICE AREAS ============ */
+function pagePracticeAreas(){
+  return header() + `
+  <div class="page-hero"><div class="container"><div class="eyebrow on-dark">${T[currentLang].nav_practice}</div><h1 style="margin-top:14px;">${T[currentLang].page_practice_title}</h1></div></div>
+  <section class="container">
+    <div>
+    ${SERVICES[currentLang].map((s,i)=>`
+      <a class="matter-row" href="#/practice-areas/${s.slug}">
+        <div class="mr-top"><h3>0${i+1} &nbsp; ${s.t}</h3><span class="arrow">&rarr;</span></div>
+        <div class="meta">${s.d}</div>
+      </a>`).join('')}
+    </div>
+  </section>` + footer() + bottomBar();
+}
+
+function pagePracticeDetail(slug){
+  const idx = SERVICES['en'].findIndex(x=>x.slug===slug);
+  const s = idx !== -1 ? SERVICES[currentLang][idx] : SERVICES[currentLang][0];
+  return header() + `
+  <div class="page-hero"><div class="container">
+    <a href="#/practice-areas" class="back">${T[currentLang].page_practice_detail_back}</a>
+    <h1>${s.t}</h1>
+  </div></div>
+  <section class="container">
+    <p style="color:var(--grey);font-size:14.5px;line-height:1.7;">${s.d}</p>
+    <div class="notice" style="margin-top:20px;">${T[currentLang].page_practice_detail_notice}</div>
+    <a href="#/consultation" class="btn btn-primary btn-block" style="margin-top:24px;">${T[currentLang].page_practice_detail_cta}</a>
+  </section>` + footer() + bottomBar();
+}
+
+/* ============ PAGE: EXPERIENCE / COURTS ============ */
+function pageExperience(){
+  return header() + `
+  <div class="page-hero"><div class="container"><div class="eyebrow on-dark">${T[currentLang].nav_experience}</div><h1 style="margin-top:14px;">${T[currentLang].page_exp_title}</h1></div></div>
+  <section class="container">
+    <div class="timeline">${TIMELINE[currentLang].map(t=>`<div class="tl-item"><div class="yr">${t.y}</div><p>${t.d}</p></div>`).join('')}</div>
+    <div class="demo-note">${T[currentLang].time_demo}</div>
+  </section>` + footer() + bottomBar();
+}
+
+function pageCourts(){
+  return header() + `
+  <div class="page-hero"><div class="container"><div class="eyebrow on-dark">${T[currentLang].courts_eyebrow}</div><h1 style="margin-top:14px;">${T[currentLang].page_courts_title}</h1></div></div>
+  <section class="container">
+    <div class="map-visual">${mapVisual()}</div>
+    <div class="court-list">${COURTS[currentLang].map(c=>`<div class="court-row"><div class="t">${c.t}</div><div class="d">${c.d}</div></div>`).join('')}</div>
+    <div class="notice" style="margin-top:20px;">${T[currentLang].courts_notice}</div>
+  </section>` + footer() + bottomBar();
+}
+
+/* ============ PAGE: MATTERS ============ */
+function pageMatters(){
+  return header() + `
+  <div class="page-hero"><div class="container"><div class="eyebrow on-dark">${T[currentLang].matters_eyebrow}</div><h1 style="margin-top:14px;">${T[currentLang].matters_title}</h1></div></div>
+  <section class="container">
+    <div>
+    ${MATTERS[currentLang].map(m=>`
+      <a class="matter-row" href="#/selected-matters/${m.slug}">
+        <div class="mr-top"><h3>${m.t}</h3><span class="arrow">&rarr;</span></div>
+        <div class="meta">${m.cat} &middot; ${m.yr}</div>
+      </a>`).join('')}
+    </div>
+    <div class="notice" style="margin-top:20px;">${T[currentLang].matters_notice}</div>
+  </section>` + footer() + bottomBar();
+}
+
+function pageMatterDetail(slug){
+  const idx = MATTERS['en'].findIndex(x=>x.slug===slug);
+  const m = idx !== -1 ? MATTERS[currentLang][idx] : MATTERS[currentLang][0];
+  return header() + `
+  <div class="page-hero"><div class="container">
+    <a href="#/selected-matters" class="back">${T[currentLang].wiz_back}</a>
+    <h1>${m.t}</h1>
+    <div class="meta">${m.cat} &middot; ${m.yr}</div>
+  </div></div>
+  <section class="container">
+    <div class="eyebrow">${T[currentLang].matters_nature}</div><p style="margin-top:8px;color:var(--grey);font-size:14px;line-height:1.7;">${m.nature}</p>
+    <div class="eyebrow" style="margin-top:22px;">${T[currentLang].matters_rep}</div><p style="margin-top:8px;color:var(--grey);font-size:14px;line-height:1.7;">${m.rep}</p>
+    <div class="notice" style="margin-top:22px;">${T[currentLang].matters_rep_demo}</div>
+    <a href="#/consultation" class="btn btn-primary btn-block" style="margin-top:22px;">${T[currentLang].matters_discuss_similar}</a>
+  </section>` + footer() + bottomBar();
+}
+
+/* ============ PAGE: INSIGHTS ============ */
+function pageInsights(){
+  return header() + `
+  <div class="page-hero"><div class="container"><div class="eyebrow on-dark">${T[currentLang].nav_insights}</div><h1 style="margin-top:14px;">${T[currentLang].insights_title}</h1></div></div>
+  <section class="container">
+    <a class="feature-article" href="#/insights/${ARTICLES[currentLang][0].slug}">
+      <div class="cat">${ARTICLES[currentLang][0].cat}</div>
+      <h3>${ARTICLES[currentLang][0].t}</h3>
+      <div class="rt">${ARTICLES[currentLang][0].read} &nbsp;&middot;&nbsp; ${T[currentLang].insights_read}</div>
+    </a>
+    <div>
+    ${ARTICLES[currentLang].slice(1).map(a=>`
+      <a class="article-row" href="#/insights/${a.slug}">
+        <div><div class="t">${a.t}</div><div class="meta">${a.cat} &middot; ${a.read}</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>`).join('')}
+    </div>
+  </section>` + footer() + bottomBar();
+}
+
+function pageArticleDetail(slug){
+  const idx = ARTICLES['en'].findIndex(x=>x.slug===slug);
+  const a = idx !== -1 ? ARTICLES[currentLang][idx] : ARTICLES[currentLang][0];
+  const dateStr = currentLang === 'hi' ? '16 अगस्त 2026' : '16 Aug 2026';
+  return header() + `
+  <div class="page-hero"><div class="container">
+    <a href="#/insights" class="back">${T[currentLang].nav_insights}</a>
+    <h1>${a.t}</h1>
+    <div class="meta">${a.cat} &middot; ${a.read} &middot; ${dateStr}</div>
+  </div></div>
+  <section class="container">
+    ${a.body.map(p=>`<p style="color:var(--grey);font-size:14.5px;margin-bottom:16px;line-height:1.75;">${p}</p>`).join('')}
+    <div class="notice" style="margin:22px 0;">${T[currentLang].insights_notice}</div>
+    <a href="#/consultation" class="btn btn-primary btn-block">${T[currentLang].insights_cta}</a>
+  </section>` + footer() + bottomBar();
+}
+
+/* ============ PAGE: FAQ ============ */
+function pageFAQ(){
+  return header() + `
+  <div class="page-hero"><div class="container"><div class="eyebrow on-dark">${T[currentLang].faq_eyebrow}</div><h1 style="margin-top:14px;">${T[currentLang].faq_title}</h1></div></div>
+  <section class="container">${faqAccordion(FAQS[currentLang])}</section>` + footer() + bottomBar();
+}
+
+/* ============ PAGE: CONTACT ============ */
+function pageContact(){
+  return header() + `
+  <div class="page-hero"><div class="container"><div class="eyebrow on-dark">${T[currentLang].nav_contact}</div><h1 style="margin-top:14px;">${T[currentLang].contact_title}</h1></div></div>
+  <section class="container">${contactBlock()}
+    <a class="btn btn-primary btn-block" href="#/consultation" style="margin-top:22px;">${T[currentLang].nav_request_btn} &rarr;</a>
+  </section>` + footer() + bottomBar();
+}
+
+/* ============ PAGE: WIZARD ============ */
+function wizardChrome(inner, opts={}){
+  const pct = Math.round((wizardStep/TOTAL_STEPS)*100);
+  return `
+  <div class="wizard-wrap">
+    <div class="wizard-top">
+      <div class="wizard-steps">
+        <span class="num">${T[currentLang].wiz_step} 0${wizardStep} / 0${TOTAL_STEPS}</span>
+        <span class="cur">${STEP_LABELS[currentLang][wizardStep-1]}</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+    </div>
+    <div class="wizard-body">${inner}</div>
+  </div>
+  <div class="wizard-nav">
+    ${wizardStep>1?`<button class="btn btn-outline" onclick="wizardBack()">${T[currentLang].wiz_back}</button>`:`<a class="btn btn-outline" href="#/">${T[currentLang].wiz_cancel}</a>`}
+    ${opts.customNext?opts.customNext:`<button class="btn btn-primary" onclick="wizardNext()">${T[currentLang].wiz_continue}</button>`}
+  </div>`;
+}
+
+function pageWizard(){
+  if(wizardStep===1) return step1();
+  if(wizardStep===2) return step2();
+  if(wizardStep===3) return step3();
+  if(wizardStep===4) return step4();
+  if(wizardStep===5) return step5();
+  return step1();
+}
+
+/* STEP 1 */
+function getMatterTypes() {
+  return [
+    {k:'criminal', t: currentLang === 'hi' ? 'आपराधिक मामला' : 'Criminal Matter'},
+    {k:'civil', t: currentLang === 'hi' ? 'दीवानी विवाद' : 'Civil Dispute'},
+    {k:'property', t: currentLang === 'hi' ? 'संपत्ति का मामला' : 'Property Matter'},
+    {k:'family', t: currentLang === 'hi' ? 'पारिवारिक / वैवाहिक' : 'Family / Matrimonial'},
+    {k:'commercial', t: currentLang === 'hi' ? 'वाणिज्यिक मामला' : 'Commercial Matter'},
+    {k:'writ', t: currentLang === 'hi' ? 'संवैधानिक / रिट याचिका' : 'Constitutional / Writ'},
+    {k:'other', t: currentLang === 'hi' ? 'अन्य' : 'Other'}
+  ];
+}
+
+function step1(){
+  const matterTypes = getMatterTypes();
+  return wizardChrome(`
+    <h2>${T[currentLang].wiz_s1_title}</h2>
+    <div class="wizard-sub">${T[currentLang].wiz_s1_sub}</div>
+    <div class="option-grid" id="matterGrid">
+      ${matterTypes.map(m=>`<button class="option-card wide ${consultation.matterType===m.k?'selected':''}" data-k="${m.k}" onclick="selectMatter('${m.k}')"><div class="t">${m.t}</div></button>`).join('')}
+    </div>
+  `);
+}
+
+function selectMatter(k){
+  consultation.matterType = k;
+  document.querySelectorAll('#matterGrid .option-card').forEach(el=>el.classList.toggle('selected', el.dataset.k===k));
+}
+
+/* STEP 2 */
+function step2(){
+  const mt = consultation.matterType || 'other';
+  let extra = '';
+  if(mt==='criminal') extra = criminalFields();
+  else if(mt==='property') extra = propertyFields();
+  else if(mt==='civil') extra = civilFields();
+  else if(mt==='family') extra = familyFields();
+  else if(mt==='commercial') extra = commercialFields();
+
+  return wizardChrome(`
+    <h2>${T[currentLang].wiz_s2_title}</h2>
+    <div class="wizard-sub">${T[currentLang].wiz_s2_sub}</div>
+    <div class="field">
+      <label>${T[currentLang].wiz_s2_desc}</label>
+      <textarea id="f_desc" placeholder="${T[currentLang].wiz_s2_desc_ph}">${consultation.details.desc||''}</textarea>
+    </div>
+    <div class="grid2">
+      <div class="field"><label>${T[currentLang].wiz_s2_date}</label><input type="date" id="f_date" value="${consultation.details.date||''}"></div>
+      <div class="field"><label>${T[currentLang].wiz_s2_loc}</label><input type="text" id="f_loc" placeholder="${T[currentLang].wiz_s2_loc_ph}" value="${consultation.details.loc||''}"></div>
+    </div>
+    <div class="field">
+      <label>${T[currentLang].wiz_s2_existing}</label>
+      <select id="f_existing" onchange="toggleExisting()">
+        <option value="no" ${consultation.details.existing==='no'||!consultation.details.existing?'selected':''}>${T[currentLang].wiz_s2_existing_no}</option>
+        <option value="yes" ${consultation.details.existing==='yes'?'selected':''}>${T[currentLang].wiz_s2_existing_yes}</option>
+      </select>
+    </div>
+    <div id="existingBlock" class="${consultation.details.existing==='yes'?'':'hidden'}">
+      <div class="grid2">
+        <div class="field"><label>${T[currentLang].wiz_s2_court}</label><input type="text" id="f_court" value="${consultation.details.court||''}"></div>
+        <div class="field"><label>${T[currentLang].wiz_s2_case}</label><input type="text" id="f_caseno" value="${consultation.details.caseno||''}"></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label>${T[currentLang].wiz_s2_stage}</label><input type="text" id="f_stage" value="${consultation.details.stage||''}"></div>
+        <div class="field"><label>${T[currentLang].wiz_s2_hearing}</label><input type="date" id="f_hearing" value="${consultation.details.hearing||''}"></div>
+      </div>
+    </div>
+    <div class="hairline" style="margin:22px 0;"></div>
+    ${extra}
+  `);
+}
+
+function toggleExisting(){
+  const v = document.getElementById('f_existing').value;
+  document.getElementById('existingBlock').classList.toggle('hidden', v!=='yes');
+}
+
+function criminalFields(){
+  const c = consultation.criminal;
+  const roles = currentLang === 'hi' ? ['अभियुक्त','शिकायतकर्ता','पीड़ित','परिवार / प्रतिनिधि','अन्य'] : ['Accused','Complainant','Victim','Family / Representative','Other'];
+  const stages = currentLang === 'hi' ? ['प्राथमिकी / शिकायत','जांच','गिरफ्तारी / जमानत','आरोप पत्र (Charge-sheet)','विचारण (Trial)','अपील','अन्य'] : ['FIR / Complaint','Investigation','Arrest / Bail','Charge-sheet','Trial','Appeal','Other'];
+
+  return `
+    <div class="eyebrow">${T[currentLang].wiz_cond_crim_title}</div>
+    <div class="field" style="margin-top:14px;"><label>${T[currentLang].wiz_cond_crim_nature}</label><input type="text" id="c_nature" value="${c.nature||''}"></div>
+    <div class="field"><label>${T[currentLang].wiz_cond_crim_sections}</label><input type="text" id="c_sections" value="${c.sections||''}"></div>
+    <div class="field">
+      <label>${T[currentLang].wiz_cond_crim_fir}</label>
+      <select id="c_fir" onchange="toggleFIR()">
+        <option value="no" ${c.fir==='no'||!c.fir?'selected':''}>${T[currentLang].wiz_s2_existing_no}</option>
+        <option value="yes" ${c.fir==='yes'?'selected':''}>${T[currentLang].wiz_s2_existing_yes}</option>
+      </select>
+    </div>
+    <div id="firBlock" class="${c.fir==='yes'?'':'hidden'}">
+      <div class="grid2">
+        <div class="field"><label>${T[currentLang].wiz_cond_crim_firno}</label><input type="text" id="c_firno" value="${c.firno||''}"></div>
+        <div class="field"><label>${T[currentLang].wiz_cond_crim_firdate}</label><input type="date" id="c_firdate" value="${c.firdate||''}"></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label>${T[currentLang].wiz_cond_crim_ps}</label><input type="text" id="c_ps" value="${c.ps||''}"></div>
+        <div class="field"><label>${T[currentLang].wiz_cond_crim_district}</label><input type="text" id="c_district" value="${c.district||''}"></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>${T[currentLang].wiz_cond_crim_role}</label>
+      <select id="c_role">
+        ${roles.map(r=>`<option ${c.role===r?'selected':''}>${r}</option>`).join('')}
+      </select>
+    </div>
+    <div class="field">
+      <label>${T[currentLang].wiz_cond_crim_stage}</label>
+      <select id="c_stage">
+        ${stages.map(r=>`<option ${c.stage===r?'selected':''}>${r}</option>`).join('')}
+      </select>
+    </div>
+    <div class="notice">${T[currentLang].wiz_cond_crim_notice}</div>
+  `;
+}
+
+function toggleFIR(){
+  const v = document.getElementById('c_fir').value;
+  document.getElementById('firBlock').classList.toggle('hidden', v!=='yes');
+}
+
+function propertyFields(){
+  const p = consultation.civil;
+  return `
+    <div class="eyebrow">${T[currentLang].wiz_cond_prop_title}</div>
+    <div class="field" style="margin-top:14px;"><label>${T[currentLang].wiz_cond_prop_loc}</label><input type="text" id="p_loc" value="${p.ploc||''}"></div>
+    <div class="field"><label>${T[currentLang].wiz_cond_prop_type}</label><input type="text" id="p_type" value="${p.ptype||''}" placeholder="${T[currentLang].wiz_cond_prop_type_ph}"></div>
+    <div class="field"><label>${T[currentLang].wiz_cond_prop_issue}</label><textarea id="p_issue">${p.issue||''}</textarea></div>
+    <div class="field"><label>${T[currentLang].wiz_cond_prop_parties}</label><input type="text" id="p_parties" value="${p.parties||''}"></div>
+  `;
+}
+
+function civilFields(){
+  const p = consultation.civil;
+  return `
+    <div class="eyebrow">${T[currentLang].wiz_cond_civil_title}</div>
+    <div class="field" style="margin-top:14px;"><label>${T[currentLang].wiz_cond_civil_parties}</label><input type="text" id="p_parties" value="${p.parties||''}"></div>
+    <div class="field"><label>${T[currentLang].wiz_cond_civil_relief}</label><textarea id="p_issue" placeholder="${T[currentLang].wiz_cond_civil_relief_ph}">${p.issue||''}</textarea></div>
+  `;
+}
+
+function familyFields(){
+  const f = consultation.family;
+  const types = currentLang === 'hi' ? ['तलाक','भरण-पोषण','कस्टडी','घरेलू विवाद','अन्य'] : ['Divorce','Maintenance','Custody','Domestic Dispute','Other'];
+  return `
+    <div class="eyebrow">${T[currentLang].wiz_cond_fam_title}</div>
+    <div class="field" style="margin-top:14px;">
+      <label>${T[currentLang].wiz_cond_fam_type}</label>
+      <select id="fa_type">
+        ${types.map(r=>`<option ${f.type===r?'selected':''}>${r}</option>`).join('')}
+      </select>
+    </div>
+    <div class="field"><label>${T[currentLang].wiz_cond_fam_dates}</label><input type="text" id="fa_dates" value="${f.dates||''}" placeholder="${T[currentLang].wiz_cond_fam_dates_ph}"></div>
+  `;
+}
+
+function commercialFields(){
+  const c = consultation.commercial;
+  return `
+    <div class="eyebrow">${T[currentLang].wiz_cond_comm_title}</div>
+    <div class="field" style="margin-top:14px;"><label>${T[currentLang].wiz_cond_comm_biz}</label><input type="text" id="cm_biz" value="${c.biz||''}"></div>
+    <div class="field"><label>${T[currentLang].wiz_cond_comm_nature}</label><textarea id="cm_nature">${c.nature||''}</textarea></div>
+    <div class="field"><label>${T[currentLang].wiz_cond_comm_contract}</label><input type="text" id="cm_contract" value="${c.contract||''}"></div>
+    <div class="field"><label>${T[currentLang].wiz_cond_comm_deadline}</label><input type="date" id="cm_deadline" value="${c.deadline||''}"></div>
+  `;
+}
+
+function saveStep2(){
+  consultation.details.desc = val('f_desc');
+  consultation.details.date = val('f_date');
+  consultation.details.loc = val('f_loc');
+  consultation.details.existing = val('f_existing');
+  if(consultation.details.existing==='yes'){
+    consultation.details.court = val('f_court');
+    consultation.details.caseno = val('f_caseno');
+    consultation.details.stage = val('f_stage');
+    consultation.details.hearing = val('f_hearing');
+  }
+  const mt = consultation.matterType;
+  if(mt==='criminal'){
+    Object.assign(consultation.criminal,{nature:val('c_nature'),sections:val('c_sections'),fir:val('c_fir'),
+      firno:val('c_firno'),firdate:val('c_firdate'),ps:val('c_ps'),district:val('c_district'),role:val('c_role'),stage:val('c_stage')});
+  } else if(mt==='property'){
+    Object.assign(consultation.civil,{ploc:val('p_loc'),ptype:val('p_type'),issue:val('p_issue'),parties:val('p_parties')});
+  } else if(mt==='civil'){
+    Object.assign(consultation.civil,{parties:val('p_parties'),issue:val('p_issue')});
+  } else if(mt==='family'){
+    Object.assign(consultation.family,{type:val('fa_type'),dates:val('fa_dates')});
+  } else if(mt==='commercial'){
+    Object.assign(consultation.commercial,{biz:val('cm_biz'),nature:val('cm_nature'),contract:val('cm_contract'),deadline:val('cm_deadline')});
+  }
+}
+function val(id){const el=document.getElementById(id);return el?el.value:'';}
+
+/* STEP 3 */
+function step3(){
+  const c = consultation.contact;
+  const prefOptions = currentLang === 'hi' ? ['व्हाट्सएप','फोन'] : ['WhatsApp','Phone'];
+  return wizardChrome(`
+    <h2>${T[currentLang].wiz_s4_title}</h2>
+    <div class="wizard-sub">${T[currentLang].wiz_s4_sub}</div>
+    <div class="field" id="fld_name"><label>${T[currentLang].wiz_s4_name}</label><input type="text" id="ct_name" value="${c.name||''}"><div class="err-msg">${T[currentLang].wiz_name_err}</div></div>
+    <div class="field" id="fld_mobile"><label>${T[currentLang].wiz_s4_mobile}</label><input type="tel" id="ct_mobile" value="${c.mobile||''}" placeholder="${T[currentLang].wiz_s4_mobile_ph}"><div class="err-msg">${T[currentLang].wiz_mobile_err}</div></div>
+    <div class="field"><label>${T[currentLang].wiz_s4_city}</label><input type="text" id="ct_city" value="${c.city||''}"></div>
+    <div class="field">
+      <label>${T[currentLang].wiz_s4_pref}</label>
+      <select id="ct_pref">
+        ${prefOptions.map(p=>`<option ${c.pref===p?'selected':''}>${p}</option>`).join('')}
+      </select>
+    </div>
+    <div class="checkline"><input type="checkbox" id="ct_confirm" ${c.confirm?'checked':''}><span>${T[currentLang].wiz_s4_confirm}</span></div>
+    <div class="checkline"><input type="checkbox" id="ct_privacy" ${c.privacy?'checked':''}><span>${T[currentLang].wiz_s4_privacy}</span></div>
+  `);
+}
+
+function validateStep3(){
+  let ok = true;
+  const name = val('ct_name'), mobile = val('ct_mobile');
+  setErr('fld_name', name.trim().length<2);
+  const mobileOk = /^[6-9]\d{9}$/.test(mobile.replace(/\D/g,''));
+  setErr('fld_mobile', !mobileOk);
+  if(name.trim().length<2||!mobileOk) ok=false;
+  if(!document.getElementById('ct_confirm').checked || !document.getElementById('ct_privacy').checked){
+    alert(T[currentLang].wiz_confirm_err);
+    ok=false;
+  }
+  return ok;
+}
+function setErr(id,isErr){ const el = document.getElementById(id); if(el) el.classList.toggle('error', isErr); }
+
+/* STEP 4 */
+let selectedDay = Object.keys(SLOTS)[0];
+function step4(){
+  const days = Object.keys(SLOTS);
+  const types = [
+    {k: 'inperson', t: T[currentLang].wiz_s5_type_inperson, d: T[currentLang].wiz_s5_type_inperson_d},
+    {k: 'phone', t: T[currentLang].wiz_s5_type_phone, d: T[currentLang].wiz_s5_type_phone_d},
+    {k: 'video', t: T[currentLang].wiz_s5_type_video, d: T[currentLang].wiz_s5_type_video_d}
+  ];
+  return wizardChrome(`
+    <h2>${T[currentLang].wiz_s5_title}</h2>
+    <div class="wizard-sub">${T[currentLang].wiz_s5_sub}</div>
+    <div class="option-grid" id="typeGrid">
+      ${types.map(type=>`
+        <button class="option-card ${consultation.appointment.type===type.k?'selected':''}" data-k="${type.k}" onclick="selectApptType('${type.k}')"><div class="t">${type.t}</div><div class="d">${type.d}</div></button>
+      `).join('')}
+    </div>
+    <div class="hairline" style="margin:22px 0;"></div>
+    <div class="field">
+      <label>${T[currentLang].wiz_s5_date}</label>
+      <select id="daySelect" onchange="changeDay()">
+        ${days.map(d=>`<option value="${d}" ${selectedDay===d?'selected':''}>${currentLang === 'hi' ? d.replace('AUG', 'अगस्त') : d + ' 2026'}</option>`).join('')}
+      </select>
+    </div>
+    <div id="slotArea">${renderSlots()}</div>
+    <div class="notice" style="margin-top:18px;">${T[currentLang].wiz_s5_notice}</div>
+  `);
+}
+
+function selectApptType(k){
+  consultation.appointment.type = k;
+  document.querySelectorAll('#typeGrid .option-card').forEach(el=>el.classList.toggle('selected', el.dataset.k===k));
+}
+
+function changeDay(){ selectedDay = document.getElementById('daySelect').value; document.getElementById('slotArea').innerHTML = renderSlots(); }
+
+function renderSlots(){
+  const slots = SLOTS[selectedDay];
+  if(!slots || slots.every(s=>!s.ok)) return `<div class="empty-state">${T[currentLang].wiz_s5_no_slots}</div>`;
+  const dayStr = currentLang === 'hi' ? selectedDay.replace('AUG', 'अगस्त') : selectedDay + ' 2026';
+  return `<div class="slot-day"><h4>${dayStr}</h4><div class="slot-grid">
+    ${slots.map(s=>`<button class="slot ${!s.ok?'disabled':''} ${consultation.appointment.date===selectedDay&&consultation.appointment.time===s.t?'selected':''}" ${s.ok?`onclick="selectSlot('${s.t}')"`:'disabled'}>${s.t}</button>`).join('')}
+  </div></div>`;
+}
+
+function selectSlot(t){
+  consultation.appointment.date = selectedDay;
+  consultation.appointment.time = t;
+  document.getElementById('slotArea').innerHTML = renderSlots();
+}
+
+/* STEP 5 */
+function step5(){
+  const c = consultation;
+  const mtLabel = (getMatterTypes().find(m=>m.k===c.matterType)||{}).t || 'Not specified';
+  return wizardChrome(`
+    <h2>${T[currentLang].wiz_s6_title}</h2>
+    <div class="wizard-sub">${T[currentLang].wiz_s6_sub}</div>
+
+    <div class="review-block">
+      <div class="rh"><h4>${T[currentLang].wiz_s6_matter}</h4><a class="edit" onclick="goStep(1)">${T[currentLang].wiz_s6_edit}</a></div>
+      <div class="rr"><span class="k">${T[currentLang].wiz_s6_type}</span><span class="v">${mtLabel}</span></div>
+    </div>
+
+    <div class="review-block">
+      <div class="rh"><h4>${T[currentLang].wiz_s6_case_details}</h4><a class="edit" onclick="goStep(2)">${T[currentLang].wiz_s6_edit}</a></div>
+      <div class="rr"><span class="k">${T[currentLang].wiz_s6_desc}</span><span class="v">${trunc(c.details.desc)}</span></div>
+      <div class="rr"><span class="k">${T[currentLang].wiz_s6_loc}</span><span class="v">${c.details.loc||'—'}</span></div>
+      <div class="rr"><span class="k">${T[currentLang].wiz_s6_existing}</span><span class="v">${c.details.existing==='yes' ? (currentLang === 'hi' ? 'हाँ' : 'Yes') : (currentLang === 'hi' ? 'नहीं' : 'No')}</span></div>
+    </div>
+
+    <div class="review-block">
+      <div class="rh"><h4>${T[currentLang].wiz_s6_contact}</h4><a class="edit" onclick="goStep(3)">${T[currentLang].wiz_s6_edit}</a></div>
+      <div class="rr"><span class="k">${T[currentLang].wiz_s6_name}</span><span class="v">${c.contact.name||'—'}</span></div>
+      <div class="rr"><span class="k">${T[currentLang].wiz_s6_mobile}</span><span class="v">${c.contact.mobile||'—'}</span></div>
+    </div>
+
+    <div class="review-block">
+      <div class="rh"><h4>${T[currentLang].wiz_s6_appointment}</h4><a class="edit" onclick="goStep(4)">${T[currentLang].wiz_s6_edit}</a></div>
+      <div class="rr"><span class="k">${T[currentLang].wiz_s6_type}</span><span class="v">${apptTypeLabel(c.appointment.type)}</span></div>
+      <div class="rr"><span class="k">${T[currentLang].wiz_s6_date}</span><span class="v">${c.appointment.date ? (currentLang === 'hi' ? c.appointment.date.replace('AUG', 'अगस्त') : c.appointment.date + ' 2026') : '—'}</span></div>
+      <div class="rr"><span class="k">${T[currentLang].wiz_s6_time}</span><span class="v">${c.appointment.time||'—'}</span></div>
+    </div>
+
+    <div class="notice" style="margin-top:6px;">${T[currentLang].wiz_s6_notice}</div>
+  `, {customNext:`<button class="btn btn-gold" onclick="submitConsultation()">${T[currentLang].wiz_submit_request}</button>`});
+}
+
+function trunc(s){ if(!s) return '—'; return s.length>60? s.slice(0,60)+'…': s; }
+function apptTypeLabel(k){
+  if (currentLang === 'hi') {
+    return {inperson:'व्यक्तिगत (कार्यालय)',phone:'फोन पर',video:'वीडियो कॉल'}[k] || '—';
+  }
+  return {inperson:'In-Person',phone:'Phone',video:'Video'}[k] || '—';
+}
+function goStep(n){ wizardStep = n; route(); }
+
+/* WIZARD NAV */
+function wizardNext(){
+  if(wizardStep===1 && !consultation.matterType){ alert(T[currentLang].wiz_select_matter_err); return; }
+  if(wizardStep===2){ saveStep2(); }
+  if(wizardStep===3){
+    if(!validateStep3()) return;
+    consultation.contact = {name:val('ct_name'),mobile:val('ct_mobile'),city:val('ct_city'),pref:val('ct_pref'),confirm:true,privacy:true};
+  }
+  if(wizardStep===4){
+    if(!consultation.appointment.type){ alert(T[currentLang].wiz_appt_type_err); return; }
+    if(!consultation.appointment.time){ alert(T[currentLang].wiz_appt_slot_err); return; }
+  }
+  wizardStep = Math.min(wizardStep+1, TOTAL_STEPS);
+  location.hash = '#/consultation';
+  route();
+}
+function wizardBack(){ wizardStep = Math.max(1, wizardStep-1); route(); }
+
+function constructWhatsAppMessage() {
+  const c = consultation;
+  const mtLabel = (getMatterTypes().find(m => m.k === c.matterType) || {}).t || 'Not specified';
+  const dateStr = c.appointment.date ? (currentLang === 'hi' ? c.appointment.date.replace('AUG', 'अगस्त') : c.appointment.date + ' 2026') : '—';
+  
+  if (currentLang === 'hi') {
+    let msg = `नमस्ते अधिवक्ता मिहिर शुक्ला जी,\n\nमैं कानूनी परामर्श के लिए अनुरोध करना चाहता/चाहती हूँ। विवरण इस प्रकार हैं:\n\n`;
+    msg += `*मामले का विवरण:*\n`;
+    msg += `• प्रकार: ${mtLabel}\n`;
+    msg += `• संक्षिप्त विवरण: ${c.details.desc || '—'}\n`;
+    msg += `• घटना की तिथि: ${c.details.date || '—'}\n`;
+    msg += `• स्थान: ${c.details.loc || '—'}\n`;
+    msg += `• लंबित मामला: ${c.details.existing === 'yes' ? 'हाँ' : 'नहीं'}\n`;
+    if (c.details.existing === 'yes') {
+      msg += `  - न्यायालय/मंच: ${c.details.court || '—'}\n`;
+      msg += `  - केस संख्या: ${c.details.caseno || '—'}\n`;
+      msg += `  - वर्तमान चरण: ${c.details.stage || '—'}\n`;
+      msg += `  - अगली सुनवाई: ${c.details.hearing || '—'}\n`;
+    }
+    
+    if (c.matterType === 'criminal') {
+      const crim = c.criminal;
+      msg += `\n*आपराधिक मामले का विवरण:*\n`;
+      msg += `• अपराध की प्रकृति: ${crim.nature || '—'}\n`;
+      msg += `• संबंधित धाराएं: ${crim.sections || '—'}\n`;
+      msg += `• प्राथमिकी (FIR) दर्ज: ${crim.fir === 'yes' ? 'हाँ' : 'नहीं'}\n`;
+      if (crim.fir === 'yes') {
+        msg += `  - प्राथमिकी संख्या: ${crim.firno || '—'}\n`;
+        msg += `  - प्राथमिकी तिथि: ${crim.firdate || '—'}\n`;
+        msg += `  - थाना: ${crim.ps || '—'}\n`;
+        msg += `  - जिला: ${crim.district || '—'}\n`;
+      }
+      msg += `• आपकी भूमिका: ${crim.role || '—'}\n`;
+      msg += `• वर्तमान स्थिति: ${crim.stage || '—'}\n`;
+    }
+    
+    msg += `\n*संपर्क विवरण:*\n`;
+    msg += `• नाम: ${c.contact.name || '—'}\n`;
+    msg += `• मोबाइल नंबर: ${c.contact.mobile || '—'}\n`;
+    msg += `• शहर: ${c.contact.city || '—'}\n`;
+    msg += `• पसंदीदा संचार माध्यम: ${c.contact.pref || '—'}\n`;
+    
+    msg += `\n*अपॉइंटमेंट प्राथमिकता:*\n`;
+    msg += `• परामर्श प्रकार: ${apptTypeLabel(c.appointment.type)}\n`;
+    msg += `• तिथि: ${dateStr}\n`;
+    msg += `• समय: ${c.appointment.time || '—'}\n`;
+    
+    return msg;
+  } else {
+    let msg = `Hello Advocate Mihir Shukla,\n\nI would like to request a legal consultation. My details are as follows:\n\n`;
+    msg += `*Matter Details:*\n`;
+    msg += `• Type: ${mtLabel}\n`;
+    msg += `• Description: ${c.details.desc || '—'}\n`;
+    msg += `• Date of Incident: ${c.details.date || '—'}\n`;
+    msg += `• Location: ${c.details.loc || '—'}\n`;
+    msg += `• Existing Case: ${c.details.existing === 'yes' ? 'Yes' : 'No'}\n`;
+    if (c.details.existing === 'yes') {
+      msg += `  - Court/Forum: ${c.details.court || '—'}\n`;
+      msg += `  - Case Number: ${c.details.caseno || '—'}\n`;
+      msg += `  - Current Stage: ${c.details.stage || '—'}\n`;
+      msg += `  - Next Hearing: ${c.details.hearing || '—'}\n`;
+    }
+    
+    if (c.matterType === 'criminal') {
+      const crim = c.criminal;
+      msg += `\n*Criminal Matter Details:*\n`;
+      msg += `• Nature of Offence: ${crim.nature || '—'}\n`;
+      msg += `• Sections/Acts Involved: ${crim.sections || '—'}\n`;
+      msg += `• FIR Registered: ${crim.fir === 'yes' ? 'Yes' : 'No'}\n`;
+      if (crim.fir === 'yes') {
+        msg += `  - FIR Number: ${crim.firno || '—'}\n`;
+        msg += `  - FIR Date: ${crim.firdate || '—'}\n`;
+        msg += `  - Police Station: ${crim.ps || '—'}\n`;
+        msg += `  - District: ${crim.district || '—'}\n`;
+      }
+      msg += `• Your Role: ${crim.role || '—'}\n`;
+      msg += `• Current Stage: ${crim.stage || '—'}\n`;
+    }
+    
+    msg += `\n*Contact Details:*\n`;
+    msg += `• Name: ${c.contact.name || '—'}\n`;
+    msg += `• Mobile: ${c.contact.mobile || '—'}\n`;
+    msg += `• City: ${c.contact.city || '—'}\n`;
+    msg += `• Preferred Communication: ${c.contact.pref || '—'}\n`;
+    
+    msg += `\n*Appointment Preference:*\n`;
+    msg += `• Type: ${apptTypeLabel(c.appointment.type)}\n`;
+    msg += `• Date: ${dateStr}\n`;
+    msg += `• Time: ${c.appointment.time || '—'}\n`;
+    
+    return msg;
+  }
+}
+
+function submitConsultation(){
+  const app = document.getElementById('app');
+  app.innerHTML = header() + `<div class="loader"><div class="spinner"></div><p style="color:var(--grey);font-size:13px;">${T[currentLang].wiz_loading}</p></div>`;
+  const msg = constructWhatsAppMessage();
+  const encodedMsg = encodeURIComponent(msg);
+  const waUrl = `https://wa.me/919415853397?text=${encodedMsg}`;
+  window.open(waUrl, '_blank');
+  setTimeout(()=>{
+    lastRef = 'MS-2026-' + (1000+Math.floor(Math.random()*9000));
+    location.hash = '#/consultation/success';
+  }, 900);
+}
+
+/* SUCCESS & STATUS PAGES */
+function pageSuccess(){
+  const c = consultation;
+  if(!lastRef) lastRef = 'MS-2026-1048';
+  const dateStr = c.appointment.date ? (currentLang === 'hi' ? c.appointment.date.replace('AUG', 'अगस्त') : c.appointment.date + ' 2026') : '—';
+  return header() + `
+  <div class="success-wrap container">
+    <div class="success-icon">&#10003;</div>
+    <h1 style="font-size:24px;">${T[currentLang].suc_received}</h1>
+    <p style="color:var(--grey);font-size:14px;margin-top:12px;">${T[currentLang].suc_lead}</p>
+    <div class="ref-box">
+      <div class="lbl">${T[currentLang].suc_ref}</div>
+      <div class="val">${lastRef}</div>
+      <div style="margin-top:14px;"><span class="badge-status badge-pending">${T[currentLang].suc_pending}</span></div>
+    </div>
+    <div class="review-block" style="text-align:left;border-top:1px solid var(--line);">
+      <div class="rr"><span class="k">${T[currentLang].suc_req_date}</span><span class="v">${dateStr}</span></div>
+      <div class="rr"><span class="k">${T[currentLang].suc_req_time}</span><span class="v">${c.appointment.time||'—'}</span></div>
+      <div class="rr"><span class="k">${T[currentLang].suc_type}</span><span class="v">${apptTypeLabel(c.appointment.type)}</span></div>
+    </div>
+    <a class="btn btn-primary btn-block" href="#/consultation/status" style="margin-top:22px;">${T[currentLang].suc_btn_track}</a>
+    <a class="btn btn-outline btn-block" href="#/" style="margin-top:10px;">${T[currentLang].suc_btn_home}</a>
+  </div>` + footer();
+}
+
+function pageStatus(){
+  return header() + `
+  <div class="page-hero"><div class="container"><div class="eyebrow on-dark">Status</div><h1 style="margin-top:14px;">${T[currentLang].stat_title}</h1></div></div>
+  <section class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line);">
+      <span style="color:var(--grey);font-size:13px;">${T[currentLang].suc_ref}</span><span style="font-weight:700;font-family:var(--serif);font-size:16px;">${lastRef||'MS-2026-1048'}</span>
+    </div>
+    <div style="margin-top:16px;"><span class="badge-status badge-pending">${T[currentLang].suc_pending}</span></div>
+
+    <div class="status-timeline">
+      <div class="status-step done"><div class="dot">&#10003;</div><div><div class="t">${T[currentLang].stat_step1_t}</div><div class="d">${T[currentLang].stat_step1_d}</div></div></div>
+      <div class="status-step active"><div class="dot">&#8226;</div><div><div class="t">${T[currentLang].stat_step2_t}</div><div class="d">${T[currentLang].stat_step2_d}</div></div></div>
+      <div class="status-step"><div class="dot"></div><div><div class="t">${T[currentLang].stat_step3_t}</div><div class="d">${T[currentLang].stat_step3_d}</div></div></div>
+      <div class="status-step"><div class="dot"></div><div><div class="t">${T[currentLang].stat_step4_t}</div><div class="d">${T[currentLang].stat_step4_d}</div></div></div>
+    </div>
+    <div class="notice" style="margin-top:8px;">${T[currentLang].stat_notice}</div>
+    <a class="btn btn-outline btn-block" href="#/" style="margin-top:20px;">${T[currentLang].suc_btn_home}</a>
+  </section>` + footer() + bottomBar();
+}
+
+/* ============ INIT ============ */
+route();
+</script>
+</body>
+</html>
